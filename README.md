@@ -49,17 +49,12 @@ gemini extensions install https://github.com/ehurrn/newsroom-extension
 ```
 *Note: The extension automatically installs its dependencies on the first run.*
 
-**Option 2: Link from repository**
-```bash
-gemini extensions link /path/to/newsroom-extension
-```
-
-**Option 3: Manual installation**
+**Option 2: Manual installation**
 Clone the repository and link it as above.
 
 ### Claude Code
 
-The extension can be used as an MCP server in Claude Code. See [INSTALLATION.md](INSTALLATION.md) for complete setup instructions.
+The extension can be used as a plugin in Claude Code. See [INSTALLATION.md](INSTALLATION.md) for complete setup instructions.
 
 ### Claude Desktop
 
