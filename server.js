@@ -22,10 +22,18 @@ const SERVER_VERSION = '3.0.0';
 const SKILLS_BASE_DIR = path.join(__dirname, 'skills');
 
 // Initialize the MCP server
-const server = new Server({
-  name: SERVER_NAME,
-  version: SERVER_VERSION,
-});
+const server = new Server(
+  {
+    name: SERVER_NAME,
+    version: SERVER_VERSION,
+  },
+  {
+    capabilities: {
+      tools: {},
+      resources: {}
+    }
+  }
+);
 
 // In-memory cache for discovered skills
 let skillsCache = null;
