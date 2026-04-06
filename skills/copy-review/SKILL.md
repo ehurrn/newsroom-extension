@@ -1,5 +1,5 @@
 ---
-name: Copy Review
+name: copy-review
 description: "Line-edit for readability, accessibility, and SEO without touching facts. This is your technical publishing QA before editorial review—catch typographical errors, rhythm problems, ad placement conflicts, and metadata gaps that confuse search engines."
 ---
 

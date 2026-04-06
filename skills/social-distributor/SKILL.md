@@ -1,5 +1,5 @@
 ---
-name: Social Distributor
+name: social-distributor
 description: "Convert approved articles into platform-optimized social posts. Multi-platform (Facebook, X/Twitter, LinkedIn, Bluesky, Threads). Legally defensible marketing copy—libel exposure is identical to article text. A/B test hooks. Metadata verified."
 ---
 

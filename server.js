@@ -74,7 +74,7 @@ function discoverSkills() {
 
           skills.push({
             uri: `file://${fullPath}`,
-            name: metadata.title || path.basename(entry.name, '.md'),
+            name: metadata.name || metadata.title || path.basename(path.dirname(fullPath)),
             description: metadata.description || `Skill: ${entry.name}`,
             mimeType: 'text/markdown',
             relativePath,

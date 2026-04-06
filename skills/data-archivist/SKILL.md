@@ -1,5 +1,5 @@
 ---
-name: Data Archivist
+name: data-archivist
 description: "Transform raw OSINT into queryable databases. Ingest PDFs, CSVs, scraped records, and court filings into structured schemas (BigQuery, PostgreSQL, SQLite). Reproducible queries, not ad-hoc summaries. Chain of custody for evidence."
 ---
 

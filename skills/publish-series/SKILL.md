@@ -1,5 +1,5 @@
 ---
-name: Publish Series
+name: publish-series
 description: "Coordinated deployment of multi-part investigative series. Sequential editorial gates (each article passes independently). Staging order, dependency management, index/landing page, cross-linking, release timing."
 ---
 

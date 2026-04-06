@@ -1,5 +1,5 @@
 ---
-name: Final Editor Review
+name: final-editor-review
 description: "Adversarial pre-publication libel filter. Assume maximum liability. Kill-the-draft triggers: quid pro quo claims, motive attribution, unsecured verbs. Verification mapping (every financial assertion → primary source). Syntax conversion (definitive intention → observable contradiction). Publisher greenlight criteria."
 ---
 

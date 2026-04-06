@@ -1,5 +1,5 @@
 ---
-name: Publish Article
+name: publish-article
 description: "Safe single-article deployment to production. File-by-file only (never wildcards/recursion). Pre-deployment checklist, exact file targeting, post-deployment verification, rollback procedure."
 ---
 

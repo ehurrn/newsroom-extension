@@ -1,5 +1,5 @@
 ---
-name: Managing Editor
+name: managing-editor
 description: "Newsroom workflow air-traffic controller. Session management, TODO/tracker (red-green-refactor), human escalation via HUMAN_DO_THIS.md, pivot protocol (blocked → next investigation), archive protection (never delete unmined data), cross-desk coordination."
 ---
 
