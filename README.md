@@ -14,7 +14,7 @@ This extension was built by journalists for journalists who use AI as a collabor
 
 ## The Solution
 
-**Newsroom Extension** provides 15 purpose-built skills organized into two interconnected tiers:
+**Newsroom provides 15 purpose-built skills organized into two interconnected tiers:
 
 ### Investigative Desk (7 skills)
 Designed for deep, rigorous investigation with built-in accountability:
