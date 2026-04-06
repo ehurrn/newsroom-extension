@@ -16,7 +16,17 @@ Newsroom Extension works across three platforms. Choose the one that matches you
 
 Requires Gemini CLI to be installed. [Install Gemini CLI here.](https://ai.google.dev/gemini-api/docs/client-libraries)
 
-### Option 1: Link from Local Repository
+### Option 1: Install from GitHub (Preferred)
+
+For immediate use:
+
+```bash
+gemini extensions install https://github.com/ehurrn/newsroom-extension
+```
+
+*Note: The extension automatically handles its own dependencies on first run.*
+
+### Option 2: Link from Local Repository
 
 Fastest for development and iteration:
 
@@ -25,14 +35,6 @@ gemini extensions link /path/to/newsroom-extension
 ```
 
 Replace `/path/to/newsroom-extension` with the actual path to your cloned repository.
-
-### Option 2: Install from GitHub
-
-For a public release:
-
-```bash
-gemini extensions install https://github.com/ehurrn/newsroom-extension
-```
 
 ### Option 3: Manual Setup
 

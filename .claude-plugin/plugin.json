@@ -1,0 +1,11 @@
+{
+  "name": "newsroom-extension",
+  "description": "Full-stack AI newsroom toolkit. Investigative journalism and newsroom operations.",
+  "version": "3.0.0",
+  "mcpServers": {
+    "newsroom-extension": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/bootstrap.js"]
+    }
+  }
+}

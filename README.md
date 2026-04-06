@@ -41,16 +41,17 @@ Manages editorial workflow from draft to publication:
 
 ## Installation
 
-### Gemini CLI
+### Gemini CLI (Recommended)
 
-**Option 1: Link from repository**
-```bash
-gemini extensions link /path/to/newsroom-extension
-```
-
-**Option 2: Install from GitHub**
+**Option 1: Install from GitHub (Preferred)**
 ```bash
 gemini extensions install https://github.com/ehurrn/newsroom-extension
+```
+*Note: The extension automatically installs its dependencies on the first run.*
+
+**Option 2: Link from repository**
+```bash
+gemini extensions link /path/to/newsroom-extension
 ```
 
 **Option 3: Manual installation**

@@ -17,7 +17,7 @@
   "mcpServers": {
     "newsroom-extension": {
       "command": "node",
-      "args": ["${extensionPath}/server.js"]
+      "args": ["${extensionPath}/bootstrap.js"]
     }
   },
   "author": "ehurrn",
