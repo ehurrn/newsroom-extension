@@ -1,16 +1,6 @@
 # Installation Guide
 
-Newsroom Extension works across three platforms. Choose the one that matches your workflow, or install on multiple platforms for flexibility.
-
-## Platform Overview
-
-| Platform | Best For | Setup Time | Effort Level |
-|----------|----------|-----------|--------------|
-| **Gemini CLI** | Command-line workflows, scripting, automation | 2–3 minutes | Low |
-| **Claude Code** | Browser-based, desktop app workflows | 5–10 minutes | Medium |
-| **Claude Desktop** | Native macOS/Windows integration via MCP | 10–15 minutes | Medium |
-
----
+Newsroom works across three platforms. Choose the one that matches your workflow, or install on multiple platforms for flexibility.
 
 ## Gemini CLI Installation
 
@@ -26,17 +16,8 @@ gemini extensions install https://github.com/ehurrn/newsroom-extension
 
 *Note: The extension automatically handles its own dependencies on first run.*
 
-### Option 2: Link from Local Repository
 
-Fastest for development and iteration:
-
-```bash
-gemini extensions link /path/to/newsroom-extension
-```
-
-Replace `/path/to/newsroom-extension` with the actual path to your cloned repository.
-
-### Option 3: Manual Setup
+### Option 2: Manual Setup
 
 1. Clone the repository:
    ```bash
@@ -49,57 +30,16 @@ Replace `/path/to/newsroom-extension` with the actual path to your cloned reposi
    gemini extensions link .
    ```
 
-### Verification Checklist
-
-- [ ] Gemini CLI is installed and accessible (`which gemini`)
-- [ ] Extension is linked or installed (`gemini extensions list`)
-- [ ] Skills are accessible (`gemini skills list`)
-- [ ] Test a skill: `gemini skills run investigative-journalist`
-
 ---
 
 ## Claude Code Installation
 
-Claude Code supports Newsroom Extension as an MCP (Model Context Protocol) server.
+Claude Code supports Newsroom as a plugin.
 
-### Quick Setup
-
-1. **Open Claude Code** and navigate to the Extensions panel.
-
-2. **Add the extension repository:**
-   - Click "Add Extension"
-   - Choose "From Repository"
-   - Paste: `https://github.com/ehurrn/newsroom-extension`
-
-3. **Restart Claude Code** to load the extension.
-
-4. **Verify:** Skills should appear in the tools panel within 30 seconds.
-
-### Alternative: Direct File Reference
-
-If you prefer to work with local files:
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/ehurrn/newsroom-extension.git
-   ```
-
-2. In Claude Code, open the skills directory and reference individual skill files directly in your prompts.
-
-3. Each skill YAML file can be read and adapted in conversation.
-
-### Verification Checklist
-
-- [ ] Extension appears in Claude Code Extensions panel
-- [ ] Skills load without errors
-- [ ] You can reference a skill in a prompt and get suggestions
-- [ ] Test: Ask Claude to use "Investigative Journalist Framework" for a sample investigation
-
----
 
 ## Claude Desktop Installation
 
-Claude Desktop integrates Newsroom Extension as a Node.js MCP server for native macOS/Windows support.
+Claude Desktop integrates Newsroom as a Node.js MCP server for native macOS/Windows support.
 
 ### Prerequisites
 
@@ -190,18 +130,6 @@ Close and reopen Claude Desktop completely. The extension will load automaticall
 - [ ] Claude Desktop shows extension in Tools panel
 - [ ] Skills appear as callable tools in conversations
 
----
-
-## Platform Comparison
-
-| Feature | Gemini CLI | Claude Code | Claude Desktop |
-|---------|-----------|------------|-----------------|
-| **Installation Complexity** | Very Low | Medium | Medium |
-| **Performance** | Fast | Good | Good |
-| **Offline Use** | Yes | No | Yes |
-| **Visual Interface** | CLI | Browser | Native App |
-| **Collaboration** | Via git/versioning | Built-in sharing | Via file sync |
-| **Skill Updates** | `gemini extensions update` | Auto-sync | Manual npm update |
 
 ---
 
@@ -214,12 +142,6 @@ Check for updates:
 gemini extensions list
 ```
 
-Update a linked extension:
-```bash
-cd /path/to/newsroom-extension
-git pull origin main
-```
-
 Update an installed extension:
 ```bash
 gemini extensions update newsroom-extension
@@ -227,11 +149,7 @@ gemini extensions update newsroom-extension
 
 ### Claude Code
 
-Claude Code typically auto-syncs extensions. To force a refresh:
-1. Disconnect and reconnect the extension
-2. Restart Claude Code
-3. Clear browser cache if needed
-
+ 
 ### Claude Desktop
 
 Update the Node.js MCP server:
@@ -246,15 +164,6 @@ npm install
 ---
 
 ## Troubleshooting
-
-### "Extension not found" (Gemini CLI)
-
-**Problem:** `gemini extensions list` doesn't show newsroom-extension
-
-**Solution:**
-1. Verify the path is correct: `ls -la /path/to/newsroom-extension`
-2. Re-link: `gemini extensions link /path/to/newsroom-extension`
-3. Restart your terminal session
 
 ### "Skills not loading" (Claude Code)
 
@@ -308,9 +217,7 @@ gemini extensions uninstall newsroom-extension
 
 ### Claude Code
 
-1. Open Extensions panel
-2. Find "newsroom-extension"
-3. Click "Disconnect"
+/plugin unistall
 
 ### Claude Desktop
 
