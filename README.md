@@ -1,4 +1,4 @@
-# Newsroom Extension
+# Newsroom
 
 ![Version](https://img.shields.io/badge/version-3.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-Unlicense-brightgreen.svg)
