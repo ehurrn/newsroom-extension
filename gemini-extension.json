@@ -1,0 +1,37 @@
+{
+  "name": "newsroom-extension",
+  "version": "3.0.0",
+  "description": "Full-stack AI newsroom toolkit. Investigative journalism skills (entity mapping, dependency tracing, OSINT, libel defense, FOIA engineering, corporate veil piercing, timeline analysis) plus newsroom operations (copy review, data archival, social distribution, editorial review, deployment, workflow management).",
+  "keywords": [
+    "investigative journalism",
+    "OSINT",
+    "corruption",
+    "libel defense",
+    "newsroom",
+    "editorial",
+    "publishing",
+    "MCP",
+    "Claude",
+    "Gemini"
+  ],
+  "skills": [
+    "investigative-journalist",
+    "muckraker-master-file",
+    "structural-dependency-mapping",
+    "zero-error-defensive-audit",
+    "osint-source-inversion",
+    "temporal-anomaly-sequencing",
+    "precision-foia-engineering",
+    "corporate-veil-piercing",
+    "copy-review",
+    "data-archivist",
+    "social-distributor",
+    "final-editor-review",
+    "publish-article",
+    "publish-series",
+    "managing-editor"
+  ],
+  "author": "ehurrn",
+  "license": "Unlicense",
+  "repository": "https://github.com/ehurrn/newsroom-extension"
+}
