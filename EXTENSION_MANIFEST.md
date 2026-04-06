@@ -15,24 +15,29 @@ newsroom-extension/
 ├── mcp-server.js                          # Claude Desktop MCP server
 │
 ├── skills/                                # All skill implementations
-│   ├── investigative/                     # Investigative Desk skills
-│   │   ├── investigative-journalist.yaml
-│   │   ├── muckraker-master-file.yaml
-│   │   ├── structural-dependency-mapping.yaml
-│   │   ├── zero-error-defensive-audit.yaml
-│   │   ├── osint-source-inversion.yaml
-│   │   ├── temporal-anomaly-sequencing.yaml
-│   │   ├── precision-foia-engineering.yaml
-│   │   └── corporate-veil-piercing.yaml
-│   │
-│   └── operations/                        # Newsroom Operations skills
-│       ├── copy-review.yaml
-│       ├── data-archivist.yaml
-│       ├── social-distributor.yaml
-│       ├── final-editor-review.yaml
-│       ├── publish-article.yaml
-│       ├── publish-series.yaml
-│       └── managing-editor.yaml
+│   ├── copy-review/                       # Newsroom Operations skills
+│   │   └── SKILL.md
+│   ├── data-archivist/
+│   │   └── SKILL.md
+│   ├── final-editor-review/
+│   │   └── SKILL.md
+│   ├── investigative-journalist/          # Investigative Desk skills
+│   │   ├── SKILL.md
+│   │   ├── corporate-veil-piercing.md
+│   │   ├── muckraker-master-file.md
+│   │   ├── osint-source-inversion.md
+│   │   ├── precision-foia-engineering.md
+│   │   ├── structural-dependency-mapping.md
+│   │   ├── temporal-anomaly-sequencing.md
+│   │   └── zero-error-defensive-audit.md
+│   ├── managing-editor/
+│   │   └── SKILL.md
+│   ├── publish-article/
+│   │   └── SKILL.md
+│   ├── publish-series/
+│   │   └── SKILL.md
+│   └── social-distributor/
+│       └── SKILL.md
 │
 ├── docs/                                  # Extended documentation
 │   ├── SKILL_REFERENCE.md                 # Detailed skill documentation
