@@ -8,7 +8,11 @@ This configuration defines the delegation protocol and operational workflow for 
 
 ## Architecture: Sub-Agent Delegation Protocol
 
-All investigative and editorial work flows through a sequential desk-ordering system. Each desk:
+All investigative and editorial work flows through a sequential desk-ordering system. 
+
+**Loading Desk Instructions:** As an AI agent, you must fetch the specific operational guidelines for each desk before executing its work. You do this by calling the `get-skill` tool via the MCP server (e.g. `mcp_newsroom-extension_get-skill` or equivalent) with the desk's name.
+
+Each desk:
 - Receives artifacts from the previous desk
 - Performs focused, high-stakes work (research, validation, formatting, review, deployment)
 - Passes validated output to the next desk
@@ -158,7 +162,7 @@ If any desk encounters a hard blocker:
 ## Platform Support
 
 This extension runs on:
-- **Gemini CLI** (sub-agent delegation via prompts)
+- **Gemini CLI** (MCP server integration - use the `get-skill` tool to load desk instructions)
 - **Claude Desktop** (MCP server integration)
 - **Claude Code** (direct workflow automation)
 
