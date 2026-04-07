@@ -1,113 +1,86 @@
-# Newsroom
+# Newsroom Extension
 
-![Version](https://img.shields.io/badge/version-3.0.0-blue.svg)
-![License](https://img.shields.io/badge/license-Unlicense-brightgreen.svg)
-![MCP](https://img.shields.io/badge/MCP-1.29.0-purple.svg)
+A newsroom plugin primarily designed for [Cowork](https://claude.com/product/cowork), Anthropic's agentic desktop application — though it also works in Claude Code. Full-stack AI newsroom toolkit covering investigative journalism (OSINT, entity mapping, FOIA, corporate veil piercing, libel defense) and newsroom operations (copy review, editorial review, publishing, social distribution, data archival).
 
-An AI-powered investigative journalism toolkit. 15 skills covering OSINT, FOIA engineering, corporate veil piercing, libel defense, and full editorial workflow — from first lead to published story.
+## Installation
 
-Works with **Gemini CLI**, **Claude Desktop**, and **Claude Code**.
-
-## Install
-
-### Gemini CLI
-
-Paste this into your terminal:
-
-```
-gemini extensions install https://github.com/ehurrn/newsroom-extension
+```bash
+claude plugins add ehurrn/newsroom-extension
 ```
 
-That's it. The extension handles everything else automatically.
+Or add `ehurrn/newsroom-extension` as a marketplace in Cowork settings.
 
-### Claude Desktop
+## Commands
 
-1. [Download the extension](https://github.com/ehurrn/newsroom-extension/archive/refs/heads/main.zip) and unzip it
-2. Open a terminal in the unzipped folder and run `npm install` (requires [Node.js](https://nodejs.org/) 18+)
-3. Open your Claude Desktop config file and add the `newsroom` MCP server (see below)
-4. Fully quit and reopen Claude Desktop
+Explicit workflows you invoke with a slash command:
 
-**Config file location:**
+| Command | Description |
+|---|---|
+| `/investigate` | Launch an investigation — entity mapping, dependency tracing, OSINT, FOIA, libel-proof documentation |
+| `/copy-review` | Line-edit for readability, accessibility, and SEO without touching facts |
+| `/editor-review` | Final editorial review — fact verification, legal risk, sourcing, publication readiness |
+| `/publish` | Safe single-article deployment with pre-flight checklist |
+| `/publish-series` | Coordinated deployment of a multi-part investigative series |
+| `/distribute` | Generate platform-optimized social posts from a published article |
+| `/archive` | Ingest raw OSINT into a queryable database with chain of custody |
 
-- **Mac:** `~/Library/Application Support/Claude/claude_desktop_config.json`
-- **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+## Skills
 
-If the file is **empty or doesn't exist**, paste this (replace the path):
+Domain knowledge Claude uses automatically when relevant:
 
-```json
-{
-  "mcpServers": {
-    "newsroom": {
-      "command": "node",
-      "args": ["/full/path/to/newsroom-extension/server.js"]
-    }
-  }
-}
-```
-
-If the file **already has content**, find the `"mcpServers"` section and add the `"newsroom"` entry inside it. If there's no `"mcpServers"` section, add one as a new top-level key. See the [step-by-step guide](INSTALLATION.md#claude-desktop) for a before/after example.
-
-### Claude Code (Desktop app)
-
-1. [Download the extension](https://github.com/ehurrn/newsroom-extension/archive/refs/heads/main.zip) and unzip it
-2. Open a terminal in the unzipped folder and run `npm install`
-3. Click the **+** button next to the prompt box → **Plugins** → **Add plugin**
-4. Select the `newsroom-extension` folder
-
-Or from the terminal: `claude mcp add newsroom -- node /path/to/newsroom-extension/server.js`
-
-## What's Inside
-
-### Investigative Desk (8 skills)
+### Investigative Desk
 
 | Skill | What it does |
-|-------|-------------|
-| **Investigative Journalist** | Scope your investigation, define claims, map what you need to prove |
-| **Muckraker Master File** | Build your central intelligence file — sources, findings, gaps, risks |
-| **Structural Dependency Mapping** | Uncover hidden connections between people, organizations, and money |
-| **Corporate Veil Piercing** | Trace corporate structures, shell companies, and beneficial ownership |
-| **Zero-Error Defensive Audit** | Fact-check every claim with source attribution and confidence scoring |
-| **OSINT Source Inversion** | Assess what's publicly findable and evaluate publication risk |
-| **Temporal Anomaly Sequencing** | Spot timeline inconsistencies and suspicious chronological patterns |
-| **Precision FOIA Engineering** | Draft legally rigorous public records requests with strategic sequencing |
+|---|---|
+| `investigative-journalist` | Scope your investigation, define claims, map what you need to prove |
+| `muckraker-master-file` | Build your central intelligence file — sources, findings, gaps, risks |
+| `structural-dependency-mapping` | Uncover hidden connections between people, organizations, and money |
+| `corporate-veil-piercing` | Trace corporate structures, shell companies, and beneficial ownership |
+| `zero-error-defensive-audit` | Fact-check every claim with source attribution and confidence scoring |
+| `osint-source-inversion` | Assess what's publicly findable and evaluate publication risk |
+| `temporal-anomaly-sequencing` | Spot timeline inconsistencies and suspicious chronological patterns |
+| `precision-foia-engineering` | Draft legally rigorous public records requests with strategic sequencing |
 
-### Newsroom Operations (7 skills)
+### Newsroom Operations
 
 | Skill | What it does |
-|-------|-------------|
-| **Copy Review** | Line-edit for readability, SEO, accessibility, and ad compliance |
-| **Data Archivist** | Turn raw documents into structured, queryable databases |
-| **Social Distributor** | Generate platform-ready social posts with legally defensible copy |
-| **Final Editor Review** | Adversarial pre-publication review — libel, ethics, editorial sign-off |
-| **Publish Article** | Safe single-article deployment with pre- and post-publish checks |
-| **Publish Series** | Coordinate multi-part series with sequential editorial gates |
-| **Managing Editor** | Track assignments, deadlines, blockers, and hand off tasks that need a human |
+|---|---|
+| `copy-review` | Line-edit for readability, SEO, accessibility, and ad compliance |
+| `data-archivist` | Turn raw documents into structured, queryable databases |
+| `social-distributor` | Generate platform-ready social posts with legally defensible copy |
+| `final-editor-review` | Adversarial pre-publication review — libel, ethics, editorial sign-off |
+| `publish-article` | Safe single-article deployment with pre- and post-publish checks |
+| `publish-series` | Coordinate multi-part series with sequential editorial gates |
+| `managing-editor` | Track assignments, deadlines, blockers, and hand off tasks that need a human |
 
-## How It Works
+## Example Workflows
 
-Ask your AI assistant to use a skill by name. For example:
-
-> "Use the investigative-journalist skill to help me scope an investigation into city contract awards."
-
-> "Load the muckraker-master-file skill and help me organize what we have so far."
-
-> "Run the zero-error-defensive-audit on my draft before I send it to the editor."
-
-Skills are designed to run in sequence — each one builds on the previous:
+### Investigating a Lead
 
 ```
-Define your investigation  →  Gather intelligence  →  Map hidden connections
-    →  Verify every claim  →  Edit and review  →  Publish  →  Track what's next
+/investigate city contract awards to connected vendors
 ```
 
-## Requirements
+Launches the full investigative framework — master file construction, entity mapping, structural dependency tracing, FOIA request drafting, and defensive audit.
 
-- **Gemini CLI**: Just install it — everything else is automatic
-- **Claude Desktop / Claude Code**: Requires [Node.js](https://nodejs.org/) 18 or newer (free download, takes 2 minutes)
+### Editorial Pipeline
 
-## Contributing
+```
+/copy-review draft-article.md
+/editor-review draft-article.md
+/publish final-article.md
+/distribute final-article.md
+```
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for how to report bugs, suggest skills, or submit case studies.
+Run articles through the full editorial pipeline: technical copy review, editorial sign-off, safe deployment, and social distribution.
+
+### Archiving Evidence
+
+```
+/archive ./foia-responses/
+```
+
+Ingest a batch of FOIA response documents into a structured, queryable database with chain of custody tracking.
 
 ## License
 
