@@ -1,380 +1,149 @@
-# Extension Manifest & Directory Structure
+# Extension Manifest
 
-Complete reference for the Newsroom Extension repository structure, skills metadata, and workflow patterns.
+Complete reference for the Newsroom Extension repository structure, skill metadata, and workflow patterns.
 
 ## Directory Structure
 
 ```
 newsroom-extension/
-├── README.md                              # Main documentation
-├── INSTALLATION.md                        # Installation for all platforms
-├── CONTRIBUTING.md                        # Contribution guidelines
-├── EXTENSION_MANIFEST.md                  # This file
-├── LICENSE                                # Unlicense
-├── package.json                           # Node.js / npm configuration
-├── mcp-server.js                          # Claude Desktop MCP server
+├── README.md                    # Overview, install, skill list
+├── INSTALLATION.md              # Detailed setup for all platforms
+├── CONTRIBUTING.md              # Contribution guidelines
+├── EXTENSION_MANIFEST.md        # This file
+├── GEMINI.md                    # Gemini CLI delegation protocol
+├── LICENSE                      # Unlicense (public domain)
+├── package.json                 # Node.js config, MCP SDK dependency
+├── package-lock.json            # Locked dependency versions
+├── server.js                    # MCP server (stdio transport)
+├── bootstrap.js                 # Auto-installs deps, then runs server.js
+├── test-client.js               # MCP protocol test client
+├── gemini-extension.json        # Gemini CLI extension manifest
 │
-├── skills/                                # All skill implementations
-│   ├── copy-review/                       # Newsroom Operations skills
-│   │   └── SKILL.md
-│   ├── data-archivist/
-│   │   └── SKILL.md
-│   ├── final-editor-review/
-│   │   └── SKILL.md
-│   ├── investigative-journalist/          # Investigative Desk skills
-│   │   ├── SKILL.md
-│   │   ├── corporate-veil-piercing.md
-│   │   ├── muckraker-master-file.md
-│   │   ├── osint-source-inversion.md
-│   │   ├── precision-foia-engineering.md
-│   │   ├── structural-dependency-mapping.md
-│   │   ├── temporal-anomaly-sequencing.md
-│   │   └── zero-error-defensive-audit.md
-│   ├── managing-editor/
-│   │   └── SKILL.md
-│   ├── publish-article/
-│   │   └── SKILL.md
-│   ├── publish-series/
-│   │   └── SKILL.md
-│   └── social-distributor/
-│       └── SKILL.md
-│
-├── docs/                                  # Extended documentation
-│   ├── SKILL_REFERENCE.md                 # Detailed skill documentation
-│   ├── INVESTIGATION_TYPES.md             # Workflow by story type
-│   ├── THEORETICAL_FOUNDATIONS.md         # Research and methodology
-│   ├── PLATFORM_GUIDES.md                 # Platform-specific guidance
-│   └── examples/
-│       ├── city-contracts.md
-│       ├── corporate-misconduct.md
-│       ├── environmental-impact.md
-│       └── political-funding.md
-│
-├── templates/                             # Reusable templates
-│   ├── muckraker-master-file-template.md  # Intelligence file template
-│   ├── foia-request-template.md           # FOIA request boilerplate
-│   ├── fact-check-matrix.md               # Verification spreadsheet template
-│   └── publication-checklist.md           # Pre-publication review guide
-│
-└── case-studies/                          # Real-world usage examples
-    ├── city-corruption-investigation.md
-    ├── corporate-ownership-research.md
-    └── supply-chain-accountability.md
+└── skills/                      # All skill implementations (Markdown + YAML frontmatter)
+    ├── copy-review/
+    │   └── SKILL.md
+    ├── data-archivist/
+    │   └── SKILL.md
+    ├── final-editor-review/
+    │   └── SKILL.md
+    ├── investigative-journalist/
+    │   ├── SKILL.md                         # Main investigative framework
+    │   ├── corporate-veil-piercing.md       # Sub-skill
+    │   ├── muckraker-master-file.md         # Sub-skill
+    │   ├── osint-source-inversion.md        # Sub-skill
+    │   ├── precision-foia-engineering.md     # Sub-skill
+    │   ├── structural-dependency-mapping.md  # Sub-skill
+    │   ├── temporal-anomaly-sequencing.md    # Sub-skill
+    │   └── zero-error-defensive-audit.md    # Sub-skill
+    ├── managing-editor/
+    │   └── SKILL.md
+    ├── publish-article/
+    │   └── SKILL.md
+    ├── publish-series/
+    │   └── SKILL.md
+    └── social-distributor/
+        └── SKILL.md
 ```
 
-## Files At a Glance
+## Skill Format
 
-| File | Purpose | Size | Platform |
-|------|---------|------|----------|
-| README.md | Main entry point, overview, quick start | ~800 lines | All |
-| INSTALLATION.md | Setup for Gemini CLI / Claude Code / Desktop | ~400 lines | All |
-| CONTRIBUTING.md | Contribution guidelines and code of conduct | ~350 lines | All |
-| EXTENSION_MANIFEST.md | This file — detailed structure reference | ~500 lines | All |
-| LICENSE | Unlicense (public domain) | ~25 lines | All |
-| package.json | npm dependencies, scripts, metadata | ~20 lines | Claude Desktop |
-| mcp-server.js | MCP server implementation | ~200 lines | Claude Desktop |
-| skills/*.yaml | Individual skill definitions | 50–100 lines each | Gemini CLI / Claude |
+Each skill is a Markdown file with YAML frontmatter:
 
-## Platform Support
-
-| Component | Gemini CLI | Claude Code | Claude Desktop |
-|-----------|-----------|------------|-----------------|
-| Skills (YAML) | ✓ Native | ✓ MCP | ✓ MCP |
-| Documentation | ✓ Reference | ✓ In-context | ✓ In-context |
-| Templates | ✓ Reference | ✓ Copy-paste | ✓ Copy-paste |
-| Case Studies | ✓ Learning | ✓ Learning | ✓ Learning |
-| MCP Server | — | ✓ Optional | ✓ Required |
-
+```markdown
+---
+name: skill-name-kebab-case
+description: One-line description of when to use this skill.
 ---
 
-## Skill Metadata Summary
+# Skill Title
 
-### Investigative Desk
-
-#### 1. Investigative Journalist Framework
-- **File:** `skills/investigative/investigative-journalist.yaml`
-- **Purpose:** Scope investigation, define claims, map information dependencies
-- **When to use:** Start of any investigation
-- **Depends on:** None (entry point)
-- **Outputs:** Investigation brief, claim matrix, dependency map
-- **Platforms:** Gemini CLI, Claude Code, Claude Desktop
-
-#### 2. Muckraker Master File
-- **File:** `skills/investigative/muckraker-master-file.yaml`
-- **Purpose:** Centralized project intelligence management
-- **When to use:** After scoping; continuously updated throughout investigation
-- **Depends on:** Investigative Journalist Framework
-- **Outputs:** Structured intelligence file with sources, findings, gaps, risks
-- **Platforms:** Gemini CLI, Claude Code, Claude Desktop
-
-#### 3. Structural Dependency Mapping
-- **File:** `skills/investigative/structural-dependency-mapping.yaml`
-- **Purpose:** Identifies hidden connections, ownership chains, relationships
-- **When to use:** After gathering initial sources
-- **Depends on:** Muckraker Master File
-- **Outputs:** Dependency diagrams, relationship maps, connection matrices
-- **Platforms:** Gemini CLI, Claude Code, Claude Desktop
-
-#### 4. Zero-Error Defensive Audit
-- **File:** `skills/investigative/zero-error-defensive-audit.yaml`
-- **Purpose:** Systematic fact-checking with source attribution
-- **When to use:** Before publication; repeatedly throughout investigation
-- **Depends on:** Muckraker Master File
-- **Outputs:** Verified claims, confidence scoring, attribution spreadsheet
-- **Platforms:** Gemini CLI, Claude Code, Claude Desktop
-
-#### 5. OSINT Source Inversion
-- **File:** `skills/investigative/osint-source-inversion.yaml`
-- **Purpose:** Reveals public information vulnerabilities and misuse risks
-- **When to use:** When planning publication strategy
-- **Depends on:** Structural Dependency Mapping
-- **Outputs:** Public data inventory, risk assessment, publication guidance
-- **Platforms:** Gemini CLI, Claude Code, Claude Desktop
-
-#### 6. Temporal Anomaly Sequencing
-- **File:** `skills/investigative/temporal-anomaly-sequencing.yaml`
-- **Purpose:** Detects timeline inconsistencies and suspicious patterns
-- **When to use:** After gathering detailed chronological information
-- **Depends on:** Muckraker Master File
-- **Outputs:** Timeline analysis, anomaly flagging, pattern identification
-- **Platforms:** Gemini CLI, Claude Code, Claude Desktop
-
-#### 7. Precision FOIA Engineering
-- **File:** `skills/investigative/precision-foia-engineering.yaml`
-- **Purpose:** Drafts legally rigorous FOIA requests with strategic sequencing
-- **When to use:** When needing government records for verification
-- **Depends on:** Investigative Journalist Framework, Structural Dependency Mapping
-- **Outputs:** Draft FOIA requests, sequencing strategy, compliance guidance
-- **Platforms:** Gemini CLI, Claude Code, Claude Desktop
-
-#### 8. Corporate Veil Piercing
-- **File:** `skills/investigative/corporate-veil-piercing.yaml`
-- **Purpose:** Maps corporate structures and beneficial ownership
-- **When to use:** When investigating corporate entities or complex ownership
-- **Depends on:** Structural Dependency Mapping
-- **Outputs:** Corporate structure diagrams, beneficial ownership analyses
-- **Platforms:** Gemini CLI, Claude Code, Claude Desktop
-
----
-
-### Newsroom Operations
-
-#### 1. Copy Review
-- **File:** `skills/operations/copy-review.yaml`
-- **Purpose:** Line editing with clarity, accuracy, and house style focus
-- **When to use:** Draft stage before final review
-- **Depends on:** None (can run anytime on draft text)
-- **Outputs:** Edited copy with suggestions, clarity improvements
-- **Platforms:** Gemini CLI, Claude Code, Claude Desktop
-
-#### 2. Data Archivist
-- **File:** `skills/operations/data-archivist.yaml`
-- **Purpose:** Manages datasets, sources, and supplementary materials
-- **When to use:** Before publication to organize supporting materials
-- **Depends on:** Muckraker Master File
-- **Outputs:** Organized data directory, metadata documentation, archive structure
-- **Platforms:** Gemini CLI, Claude Code, Claude Desktop
-
-#### 3. Social Distributor
-- **File:** `skills/operations/social-distributor.yaml`
-- **Purpose:** Generates platform-specific social media content
-- **When to use:** During publication and promotion phase
-- **Depends on:** Copy Review (article text is finalized)
-- **Outputs:** Platform-specific social posts, scheduling calendar
-- **Platforms:** Gemini CLI, Claude Code, Claude Desktop
-
-#### 4. Final Editor Review
-- **File:** `skills/operations/final-editor-review.yaml`
-- **Purpose:** Comprehensive pre-publication checklist (legal, editorial, ethical)
-- **When to use:** Before any publication (required gate)
-- **Depends on:** Copy Review, Zero-Error Defensive Audit
-- **Outputs:** Review checklist, flagged issues, approval/revision notes
-- **Platforms:** Gemini CLI, Claude Code, Claude Desktop
-
-#### 5. Publish Article
-- **File:** `skills/operations/publish-article.yaml`
-- **Purpose:** Formats and publishes individual articles with metadata
-- **When to use:** For single-article publications
-- **Depends on:** Final Editor Review (must be approved)
-- **Outputs:** Published article, metadata, archive links
-- **Platforms:** Gemini CLI, Claude Code, Claude Desktop
-
-#### 6. Publish Series
-- **File:** `skills/operations/publish-series.yaml`
-- **Purpose:** Manages multi-part investigations with cross-linking
-- **When to use:** For investigations told across multiple articles
-- **Depends on:** Final Editor Review (all articles must be approved)
-- **Outputs:** Series publication plan, cross-linking structure, release schedule
-- **Platforms:** Gemini CLI, Claude Code, Claude Desktop
-
-#### 7. Managing Editor
-- **File:** `skills/operations/managing-editor.yaml`
-- **Purpose:** High-level assignment tracking and deadline management
-- **When to use:** For newsroom-wide assignment coordination
-- **Depends on:** None (can run independently)
-- **Outputs:** Assignment tracking spreadsheet, deadline calendar, status reports
-- **Platforms:** Gemini CLI, Claude Code, Claude Desktop
-
----
-
-## Workflow by Investigation Type
-
-### Local Government Accountability
-
-**Optimal skill sequence:**
-
-1. Investigative Journalist Framework — Define scope (city contracts, zoning decisions, etc.)
-2. Structural Dependency Mapping — Map relationships (officials, contractors, donors)
-3. Muckraker Master File — Gather public records and documents
-4. Zero-Error Defensive Audit — Verify timeline and key claims
-5. Temporal Anomaly Sequencing — Identify suspicious patterns in decisions
-6. Precision FOIA Engineering — Request internal communications
-7. Copy Review → Final Editor Review → Publish Article (or Publish Series)
-
-### Corporate Misconduct
-
-**Optimal skill sequence:**
-
-1. Investigative Journalist Framework — Define misconduct allegations
-2. Corporate Veil Piercing — Map corporate structures and beneficial ownership
-3. Structural Dependency Mapping — Identify board interlocks, funding relationships
-4. Muckraker Master File — Gather SEC filings, news, court documents
-5. Zero-Error Defensive Audit — Verify claims with document evidence
-6. OSINT Source Inversion — Assess publication risks and protections needed
-7. Copy Review → Final Editor Review → Publish Article
-
-### Environmental Impact
-
-**Optimal skill sequence:**
-
-1. Investigative Journalist Framework — Define specific environmental harm
-2. Structural Dependency Mapping — Map regulatory oversight and corporate actors
-3. Muckraker Master File — Gather regulatory filings, environmental data
-4. Temporal Anomaly Sequencing — Identify timeline of violations or remediation delays
-5. Zero-Error Defensive Audit — Verify technical claims with expert sources
-6. Precision FOIA Engineering — Request agency inspection records
-7. Copy Review → Final Editor Review → Publish Series
-
-### Supply Chain Accountability
-
-**Optimal skill sequence:**
-
-1. Investigative Journalist Framework — Define supply chain and alleged issues
-2. Corporate Veil Piercing — Map beneficial ownership across supply chain
-3. Structural Dependency Mapping — Identify subcontractors and relationships
-4. Muckraker Master File — Gather corporate documents, worker accounts
-5. Zero-Error Defensive Audit — Verify working conditions and wages
-6. OSINT Source Inversion — Plan source protection and anonymization
-7. Copy Review → Final Editor Review → Publish Series
-
----
-
-## Skill Sequencing Flowchart
-
-```
-                    START: Select Investigation Type
-                                  |
-                                  v
-                   Investigative Journalist Framework
-                         (Scope & Define Claims)
-                                  |
-                    +---+----------+----------+---+
-                    |   |          |          |   |
-                    v   v          v          v   v
-                [Branch by investigation type — see above]
-                    |   |          |          |   |
-                    +---+----------+----------+---+
-                                  |
-                                  v
-                        Muckraker Master File
-                     (Gather Intelligence, Update)
-                                  |
-                    +----------+--+--+----------+
-                    |          |     |          |
-                    v          v     v          v
-            Struct.Dep.Map  Corp.Veil  Temporal  OSINT
-            (Relationships)  (Ownership) (Timeline) (Risks)
-                    |          |     |          |
-                    +----------+-----+----------+
-                                  |
-                                  v
-                    Zero-Error Defensive Audit
-                    (Verify All Core Claims)
-                                  |
-                    [Findings verified? → Return to Master File if not]
-                                  |
-                                  v
-                            Copy Review
-                           (Line Editing)
-                                  |
-                                  v
-                        Final Editor Review
-                        (Legal, Ethical Check)
-                                  |
-                    [Approved? → Yes → Continue / No → Revise]
-                                  |
-                    +---+----------+----------+---+
-                    |   |          |          |   |
-                    v   v          v          v   v
-              Publish   Publish    Data      Social    Managing
-              Article   Series     Archivist Distributor Editor
-                    |   |          |          |   |
-                    +---+----------+----------+---+
-                                  |
-                                  v
-                            PUBLISHED
+[Full skill content...]
 ```
 
----
+The MCP server discovers all `.md` files under `skills/` recursively and extracts `name` and `description` from the frontmatter.
 
-## Keywords for Discovery
+## Skill Index
 
-These keywords help users find the right skill for their task:
+### Investigative Desk (8 skills)
 
-**Investigative Desk:**
-- investigative, journalist, framework, scope, claims, muckraker, intelligence, structural, dependency, mapping, relationships, connections, ownership, corporate, veil, piercing, verification, fact-checking, audit, defensive, OSINT, open source, source inversion, temporal, timeline, anomaly, sequencing, FOIA, engineering, precision
+| Name | File | Depends On |
+|------|------|------------|
+| investigative-journalist | `skills/investigative-journalist/SKILL.md` | None (entry point) |
+| muckraker-master-file | `skills/investigative-journalist/muckraker-master-file.md` | investigative-journalist |
+| structural-dependency-mapping | `skills/investigative-journalist/structural-dependency-mapping.md` | muckraker-master-file |
+| corporate-veil-piercing | `skills/investigative-journalist/corporate-veil-piercing.md` | structural-dependency-mapping |
+| zero-error-defensive-audit | `skills/investigative-journalist/zero-error-defensive-audit.md` | muckraker-master-file |
+| osint-source-inversion | `skills/investigative-journalist/osint-source-inversion.md` | structural-dependency-mapping |
+| temporal-anomaly-sequencing | `skills/investigative-journalist/temporal-anomaly-sequencing.md` | muckraker-master-file |
+| precision-foia-engineering | `skills/investigative-journalist/precision-foia-engineering.md` | investigative-journalist |
 
-**Newsroom Operations:**
-- copy, review, editing, data, archivist, archival, social, media, distributor, distribution, final, editor, review, pre-publication, publish, article, series, multi-part, managing, editor, assignment, tracking, deadline
+### Newsroom Operations (7 skills)
 
-**General:**
-- newsroom, toolkit, journalism, investigative, rigor, accountability, verification, editorial, workflow, skill, extension, Gemini, Claude
+| Name | File | Depends On |
+|------|------|------------|
+| copy-review | `skills/copy-review/SKILL.md` | None |
+| data-archivist | `skills/data-archivist/SKILL.md` | muckraker-master-file |
+| social-distributor | `skills/social-distributor/SKILL.md` | copy-review |
+| final-editor-review | `skills/final-editor-review/SKILL.md` | copy-review, zero-error-defensive-audit |
+| publish-article | `skills/publish-article/SKILL.md` | final-editor-review |
+| publish-series | `skills/publish-series/SKILL.md` | final-editor-review |
+| managing-editor | `skills/managing-editor/SKILL.md` | None |
 
----
+## MCP Server
 
-## Version History & Changelog
+The server (`server.js`) uses the Model Context Protocol SDK v1.29.0 with stdio transport. It exposes:
 
-### v3.0.0 (Current Release)
+**Tools:**
+- `list-skills` — Returns all 15 skills with names and descriptions
+- `get-skill` — Loads a skill by name (case-insensitive match)
+- `search-skills` — Searches names, descriptions, and file content
 
-**Initial Public Release**
+**Resources:**
+- Each `.md` file is exposed as a `file://` resource with its frontmatter name and description
 
-- 15 core skills (8 investigative, 7 operations)
-- Multi-platform support (Gemini CLI, Claude Code, Claude Desktop)
-- Comprehensive documentation and case studies
-- Contribution guidelines and community support
+**Config files:**
+- `gemini-extension.json` — Gemini CLI discovers this to register the MCP server
+- `bootstrap.js` — Entry point for Gemini CLI; auto-runs `npm install` if `node_modules` is missing, then imports `server.js`
 
-**Skills included:**
-- Investigative Journalist Framework
-- Muckraker Master File
-- Structural Dependency Mapping
-- Zero-Error Defensive Audit
-- OSINT Source Inversion
-- Temporal Anomaly Sequencing
-- Precision FOIA Engineering
-- Corporate Veil Piercing
-- Copy Review
-- Data Archivist
-- Social Distributor
-- Final Editor Review
-- Publish Article
-- Publish Series
-- Managing Editor
+## Workflow Sequencing
 
----
+```
+                     investigative-journalist
+                        (scope & claims)
+                              |
+                    muckraker-master-file
+                     (gather intelligence)
+                              |
+              +-------+-------+-------+-------+
+              |       |       |       |       |
+         structural  corp.   temporal  osint  precision
+         dep.map     veil    anomaly  source  foia
+              |       |       |       |       |
+              +-------+-------+-------+-------+
+                              |
+                  zero-error-defensive-audit
+                     (verify all claims)
+                              |
+                         copy-review
+                              |
+                     final-editor-review
+                              |
+                  +-----------+-----------+
+                  |                       |
+            publish-article         publish-series
+                  |                       |
+                  +-----------+-----------+
+                              |
+                      managing-editor
+                  (track, archive, next)
+```
 
-## Next Steps
+## Version History
 
-- **For installation:** See [INSTALLATION.md](INSTALLATION.md)
-- **For detailed skill docs:** See [docs/SKILL_REFERENCE.md](docs/SKILL_REFERENCE.md)
-- **For examples:** See [docs/examples/](docs/examples/)
-- **For contributions:** See [CONTRIBUTING.md](CONTRIBUTING.md)
+### v3.0.0 (Current)
+
+- 15 skills across Investigative Desk and Newsroom Operations
+- MCP server with stdio transport (SDK v1.29.0, protocol 2025-03-26)
+- Multi-platform: Gemini CLI, Claude Desktop, Claude Code
+- Auto-dependency bootstrap for Gemini CLI
+- Full-text content search across skills

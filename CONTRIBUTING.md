@@ -100,19 +100,28 @@ Use descriptive branch names:
 
 ### 4. Document Your Changes
 
-For new skills, include:
+For new skills, create a directory under `skills/` with a `SKILL.md` file:
 
-**SKILL_NAME.yaml metadata:**
-```yaml
-name: Your Skill Name
-description: |
-  One-line description.
-
-  Longer context if needed.
-platform: gemini  # or claude, or both
-tier: investigative  # or operations
-dependencies: [skill-one, skill-two]  # if any
 ```
+skills/
+  your-skill-name/
+    SKILL.md
+```
+
+**SKILL.md format:** Markdown with YAML frontmatter:
+
+```markdown
+---
+name: your-skill-name
+description: One-line description of when to use this skill.
+---
+
+# Your Skill Name
+
+[Full skill content with methodology, examples, and guidelines]
+```
+
+Names must be lowercase kebab-case (letters, numbers, hyphens only).
 
 **README section** describing the skill and when to use it
 

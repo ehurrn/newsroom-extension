@@ -272,7 +272,18 @@ function handleSearchSkills(input) {
     const nameMatch = skill.name.toLowerCase().includes(query);
     const descMatch = skill.description.toLowerCase().includes(query);
 
-    return nameMatch || descMatch;
+    // Also search file content if no match on name/description
+    if (!nameMatch && !descMatch) {
+      try {
+        const safeResolved = resolveSkillPath(skill.relativePath);
+        const content = fs.readFileSync(safeResolved, 'utf-8').toLowerCase();
+        return content.includes(query);
+      } catch {
+        return false;
+      }
+    }
+
+    return true;
   });
 
   return {

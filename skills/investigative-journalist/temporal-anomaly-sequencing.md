@@ -1,5 +1,5 @@
 ---
-name: Temporal Anomaly Sequencing
+name: temporal-anomaly-sequencing
 description: Detect suspicious chronological compression or unnatural delays in evidentiary timelines that signal coordinated malfeasance or cover-up activity.
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: Corporate Veil Piercing
+name: corporate-veil-piercing
 description: Break down anonymous corporate structures to attach real human names to shell companies or ghost vendors through OSINT techniques, UCC filings, and cross-jurisdictional mapping.
 ---
 

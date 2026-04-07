@@ -1,213 +1,184 @@
-# Installation Guide
+# Installation
 
-Newsroom works across three platforms. Choose the one that matches your workflow, or install on multiple platforms for flexibility.
+Newsroom Extension runs as an MCP server on Claude Desktop and Claude Code, and as a native extension on Gemini CLI. Each platform section lists the fastest option first.
 
-## Gemini CLI Installation
+## Gemini CLI
 
-Requires Gemini CLI to be installed. [Install Gemini CLI here.](https://ai.google.dev/gemini-api/docs/client-libraries)
-
-### Option 1: Install from GitHub (Preferred)
-
-For immediate use:
+### Option 1: Install from GitHub (recommended)
 
 ```bash
 gemini extensions install https://github.com/ehurrn/newsroom-extension
 ```
 
-*Note: The extension automatically handles its own dependencies on first run.*
+The extension auto-installs its Node.js dependencies on first run.
 
+### Option 2: Link a local clone
 
-### Option 2: Manual Setup
+```bash
+git clone https://github.com/ehurrn/newsroom-extension.git
+cd newsroom-extension
+gemini extensions link .
+```
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/ehurrn/newsroom-extension.git
-   cd newsroom-extension
-   ```
+### Verify
 
-2. Link it:
-   ```bash
-   gemini extensions link .
-   ```
+```bash
+gemini extensions list          # Should show newsroom-extension
+```
 
----
-
-## Claude Code Installation
-
-Claude Code supports Newsroom as a plugin.
-
-
-## Claude Desktop Installation
-
-Claude Desktop integrates Newsroom as a Node.js MCP server for native macOS/Windows support.
-
-### Prerequisites
-
-- Node.js 18+ installed ([download here](https://nodejs.org/))
-- Claude Desktop application installed
-
-### Step 1: Set Up the MCP Server
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/ehurrn/newsroom-extension.git
-   cd newsroom-extension
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-3. Verify the MCP server configuration exists:
-   ```bash
-   ls -la mcp-server.js
-   ```
-
-### Step 2: Configure Claude Desktop
-
-1. **Locate your Claude Desktop config file:**
-
-   **macOS:**
-   ```bash
-   ~/.claude/claude_desktop_config.json
-   ```
-
-   **Windows:**
-   ```
-   %APPDATA%\Claude\claude_desktop_config.json
-   ```
-
-2. **Open the config file** in a text editor.
-
-3. **Add the Newsroom Extension server** to the `mcpServers` section:
-
-   ```json
-   {
-     "mcpServers": {
-       "newsroom-extension": {
-         "command": "node",
-         "args": ["/path/to/newsroom-extension/mcp-server.js"]
-       }
-     }
-   }
-   ```
-
-   Replace `/path/to/newsroom-extension` with your actual installation path.
-
-4. **Full example config:**
-
-   ```json
-   {
-     "mcpServers": {
-       "newsroom-extension": {
-         "command": "node",
-         "args": ["/Users/yourname/dev/newsroom-extension/mcp-server.js"],
-         "disabled": false,
-         "autoApprove": ["read_file", "write_file"]
-       }
-     }
-   }
-   ```
-
-### Step 3: Restart Claude Desktop
-
-Close and reopen Claude Desktop completely. The extension will load automatically.
-
-### Step 4: Verify Installation
-
-1. In Claude Desktop, open the Tools panel (bottom right).
-2. You should see "Newsroom Extension" listed.
-3. Expand it to see all available skills.
-4. Test by asking: "Can you help me set up an investigation using the Investigative Journalist Framework?"
-
-### Verification Checklist
-
-- [ ] Node.js 18+ is installed (`node --version`)
-- [ ] Extension directory exists and contains `mcp-server.js`
-- [ ] `npm install` completed without errors
-- [ ] Config file is valid JSON (use JSONLint if unsure)
-- [ ] Claude Desktop shows extension in Tools panel
-- [ ] Skills appear as callable tools in conversations
-
+Then in a Gemini session, ask it to use `get-skill` with the name `investigative-journalist`.
 
 ---
 
-## Keeping Skills Updated
+## Claude Desktop
+
+### Option 1: Clone from GitHub (recommended)
+
+```bash
+git clone https://github.com/ehurrn/newsroom-extension.git
+cd newsroom-extension
+npm install
+```
+
+Then add the server to your Claude Desktop config:
+
+**macOS:** `~/.claude/claude_desktop_config.json`
+**Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+
+```json
+{
+  "mcpServers": {
+    "newsroom": {
+      "command": "node",
+      "args": ["/absolute/path/to/newsroom-extension/server.js"]
+    }
+  }
+}
+```
+
+Replace `/absolute/path/to/newsroom-extension` with the actual path on your machine. The path must be absolute — `~/` and relative paths will not work.
+
+Restart Claude Desktop. The extension should appear in the Tools panel.
+
+### Option 2: npx (no clone needed)
+
+If the package is published to npm, you can run directly:
+
+```json
+{
+  "mcpServers": {
+    "newsroom": {
+      "command": "npx",
+      "args": ["-y", "newsroom-extension-mcp"]
+    }
+  }
+}
+```
+
+### Verify
+
+Open Claude Desktop, expand the Tools panel (bottom right), and confirm "newsroom" appears with three tools: `list-skills`, `get-skill`, and `search-skills`.
+
+Test by asking: "Use the list-skills tool to show me all available newsroom skills."
+
+---
+
+## Claude Code
+
+### Option 1: Add from a local clone (recommended)
+
+```bash
+git clone https://github.com/ehurrn/newsroom-extension.git
+cd newsroom-extension
+npm install
+claude mcp add newsroom -- node /absolute/path/to/newsroom-extension/server.js
+```
+
+### Option 2: Add directly (if you already have the repo)
+
+```bash
+claude mcp add newsroom -- node /path/to/newsroom-extension/server.js
+```
+
+### Verify
+
+```bash
+claude mcp list                 # Should show "newsroom"
+```
+
+Then in a Claude Code session, ask Claude to call `list-skills`.
+
+---
+
+## Updating
 
 ### Gemini CLI
 
-Check for updates:
 ```bash
-gemini extensions list
+cd /path/to/newsroom-extension
+git pull origin main
 ```
 
-Update an installed extension:
+If installed via `gemini extensions install`:
+
 ```bash
 gemini extensions update newsroom-extension
 ```
 
-### Claude Code
-
- 
-### Claude Desktop
-
-Update the Node.js MCP server:
+### Claude Desktop / Claude Code
 
 ```bash
 cd /path/to/newsroom-extension
 git pull origin main
 npm install
-# Restart Claude Desktop
 ```
+
+Then restart Claude Desktop (Claude Code picks up changes automatically).
 
 ---
 
 ## Troubleshooting
 
-### "Skills not loading" (Claude Code)
+### "Extension not found" (Gemini CLI)
 
-**Problem:** Skills appear in panel but can't be called
+Verify the extension path and re-link:
 
-**Solution:**
-1. Check that the repository is public or properly authorized
-2. Try removing and re-adding the extension
-3. Clear Claude Code cache: Menu → Settings → Cache → Clear
-4. Restart Claude Code
+```bash
+ls /path/to/newsroom-extension/gemini-extension.json   # Must exist
+gemini extensions link /path/to/newsroom-extension
+```
 
 ### "MCP server failed to start" (Claude Desktop)
 
-**Problem:** Error in Tools panel when expanding extension
+Check these in order:
 
-**Solution:**
-1. Verify Node.js version: `node --version` (should be 18+)
-2. Check config file syntax: Paste into [JSONLint](https://jsonlint.com/)
-3. Verify path in config is absolute: `/Users/yourname/...` not `~/...`
-4. Check file permissions: `chmod +x /path/to/newsroom-extension/mcp-server.js`
-5. Review Claude Desktop logs: Help → Logs
+1. Node.js 18+ installed: `node --version`
+2. Dependencies installed: `cd /path/to/newsroom-extension && npm install`
+3. Config path is absolute and correct (not `~`, not relative)
+4. Config file is valid JSON — paste into [JSONLint](https://jsonlint.com/) to check
+5. Server starts manually: `node /path/to/newsroom-extension/server.js` (should print "started successfully" to stderr and wait for stdin)
 
-### "Port already in use" (Claude Desktop)
+### "No tools found" (Claude Code)
 
-**Problem:** MCP server fails with "port 3000 already in use"
+Verify the MCP is registered:
 
-**Solution:**
-1. Find the process: `lsof -i :3000`
-2. Kill it: `kill -9 <PID>`
-3. Restart Claude Desktop
+```bash
+claude mcp list
+```
 
-### Skills appear but are slow (All Platforms)
+If missing, re-add it:
 
-**Problem:** Skill responses are delayed
+```bash
+claude mcp add newsroom -- node /path/to/newsroom-extension/server.js
+```
 
-**Solution:**
-1. Check your internet connection (skills may fetch external data)
-2. Verify API rate limits aren't exceeded
-3. Try running a single skill in isolation
-4. Check system resources: `top` or Task Manager
+### Skills load but are slow
+
+The MCP server reads skill files from disk on first request and caches them for 30 seconds. If the skills directory is on a slow filesystem, the first call may be delayed. Subsequent calls within 30 seconds use the cache.
 
 ---
 
-## Uninstallation
+## Uninstalling
 
 ### Gemini CLI
 
@@ -215,20 +186,12 @@ npm install
 gemini extensions uninstall newsroom-extension
 ```
 
-### Claude Code
-
-/plugin unistall
-
 ### Claude Desktop
 
-1. Remove from config file: `~/.claude/claude_desktop_config.json`
-2. Delete the repository directory (optional)
-3. Restart Claude Desktop
+Remove the `"newsroom"` entry from your `claude_desktop_config.json` and restart Claude Desktop.
 
----
+### Claude Code
 
-## Getting Help
-
-- **GitHub Issues:** [github.com/ehurrn/newsroom-extension/issues](https://github.com/ehurrn/newsroom-extension/issues)
-- **Documentation:** See [README.md](README.md) and [EXTENSION_MANIFEST.md](EXTENSION_MANIFEST.md)
-- **Contributing:** See [CONTRIBUTING.md](CONTRIBUTING.md)
+```bash
+claude mcp remove newsroom
+```

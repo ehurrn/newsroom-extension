@@ -1,5 +1,5 @@
 ---
-name: Precision FOIA Engineering
+name: precision-foia-engineering
 description: Convert vague evidence gaps into surgically precise public records requests that prevent agency denial tactics and maximize retrieval of responsive documents.
 ---
 
