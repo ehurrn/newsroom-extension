@@ -1,18 +1,28 @@
 # Newsroom Extension
 
-A newsroom plugin primarily designed for [Cowork](https://claude.com/product/cowork), Anthropic's agentic desktop application — though it also works in Claude Code. Full-stack AI newsroom toolkit covering investigative journalism (OSINT, entity mapping, FOIA, corporate veil piercing, libel defense) and newsroom operations (copy review, editorial review, publishing, social distribution, data archival).
+An AI-powered investigative journalism toolkit. 15 skills covering OSINT, FOIA engineering, corporate veil piercing, libel defense, and full editorial workflow — from first lead to published story.
+
+Works with **Gemini CLI** and **Claude** (Cowork, Claude Code).
 
 ## Installation
+
+### Gemini CLI
+
+```bash
+gemini extensions install https://github.com/ehurrn/newsroom-extension
+```
+
+### Cowork / Claude Code
+
+Add `ehurrn/newsroom-extension` as a marketplace in Cowork settings, or:
 
 ```bash
 claude plugins add ehurrn/newsroom-extension
 ```
 
-Or add `ehurrn/newsroom-extension` as a marketplace in Cowork settings.
+## Commands (Cowork / Claude Code)
 
-## Commands
-
-Explicit workflows you invoke with a slash command:
+Slash commands for common workflows:
 
 | Command | Description |
 |---|---|
@@ -26,7 +36,7 @@ Explicit workflows you invoke with a slash command:
 
 ## Skills
 
-Domain knowledge Claude uses automatically when relevant:
+Domain knowledge used automatically when relevant. On Gemini CLI, ask the agent to load a skill by name. On Cowork/Claude Code, skills trigger automatically or via slash commands.
 
 ### Investigative Desk
 
@@ -53,34 +63,18 @@ Domain knowledge Claude uses automatically when relevant:
 | `publish-series` | Coordinate multi-part series with sequential editorial gates |
 | `managing-editor` | Track assignments, deadlines, blockers, and hand off tasks that need a human |
 
-## Example Workflows
+## How It Works
 
-### Investigating a Lead
+Skills are markdown files in the `skills/` directory. Each desk has a `SKILL.md` with operational guidelines. The investigative-journalist desk has additional sub-skill files for specialized techniques.
 
-```
-/investigate city contract awards to connected vendors
-```
-
-Launches the full investigative framework — master file construction, entity mapping, structural dependency tracing, FOIA request drafting, and defensive audit.
-
-### Editorial Pipeline
+Skills are designed to run in sequence — each one builds on the previous:
 
 ```
-/copy-review draft-article.md
-/editor-review draft-article.md
-/publish final-article.md
-/distribute final-article.md
+Define investigation → Gather intelligence → Map connections
+  → Verify claims → Edit and review → Publish → Track what's next
 ```
 
-Run articles through the full editorial pipeline: technical copy review, editorial sign-off, safe deployment, and social distribution.
-
-### Archiving Evidence
-
-```
-/archive ./foia-responses/
-```
-
-Ingest a batch of FOIA response documents into a structured, queryable database with chain of custody tracking.
+See [GEMINI.md](GEMINI.md) for the full sub-agent delegation protocol and desk ordering.
 
 ## License
 

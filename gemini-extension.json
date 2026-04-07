@@ -10,16 +10,8 @@
     "newsroom",
     "editorial",
     "publishing",
-    "MCP",
-    "Claude",
     "Gemini"
   ],
-  "mcpServers": {
-    "newsroom-extension": {
-      "command": "node",
-      "args": ["${extensionPath}/bootstrap.js"]
-    }
-  },
   "author": "ehurrn",
   "license": "Unlicense",
   "repository": "https://github.com/ehurrn/newsroom-extension"
