@@ -32,7 +32,7 @@ That's it. The extension handles everything else automatically.
 - **Mac:** `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
 
-Add this to the file (replace the path with where you put the folder):
+If the file is **empty or doesn't exist**, paste this (replace the path):
 
 ```json
 {
@@ -45,7 +45,7 @@ Add this to the file (replace the path with where you put the folder):
 }
 ```
 
-Need more detail? See the [step-by-step guide](INSTALLATION.md#claude-desktop).
+If the file **already has content**, find the `"mcpServers"` section and add the `"newsroom"` entry inside it. If there's no `"mcpServers"` section, add one as a new top-level key. See the [step-by-step guide](INSTALLATION.md#claude-desktop) for a before/after example.
 
 ### Claude Code (Desktop app)
 

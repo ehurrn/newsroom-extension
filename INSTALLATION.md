@@ -77,9 +77,11 @@ Open your Claude Desktop config file in a text editor:
 %APPDATA%\Claude\claude_desktop_config.json
 ```
 
-If the file is empty or doesn't exist, paste this entire block. Replace the path with where you downloaded the extension:
+#### If the file is empty or doesn't exist
 
-**Mac example:**
+Paste this entire block. Replace the path with where you downloaded the extension:
+
+**Mac:**
 ```json
 {
   "mcpServers": {
@@ -91,7 +93,7 @@ If the file is empty or doesn't exist, paste this entire block. Replace the path
 }
 ```
 
-**Windows example:**
+**Windows:**
 ```json
 {
   "mcpServers": {
@@ -103,9 +105,51 @@ If the file is empty or doesn't exist, paste this entire block. Replace the path
 }
 ```
 
-> **Important:** Use the complete path to `server.js` starting from the root of your drive — like `/Users/jane/newsroom-extension/server.js`, not just `server.js`. If you're unsure, drag the `server.js` file onto a Terminal window (Mac) or right-click it and choose **Copy as path** (Windows).
+#### If the file already has content
 
-If the file already has other MCP servers in it, add the `"newsroom": { ... }` block inside the existing `"mcpServers"` object — don't replace the whole file.
+Most Claude Desktop users will already have settings in this file. **Don't replace it** — you need to merge the newsroom entry in.
+
+Look for a `"mcpServers"` section. If it exists, add the `"newsroom"` block inside it. If it doesn't exist, add `"mcpServers"` as a new top-level key.
+
+**Before** (your file might look something like this):
+```json
+{
+  "preferences": {
+    "chromeExtensionEnabled": true
+  }
+}
+```
+
+**After** (add the `mcpServers` section — note the comma after the closing `}` of `preferences`):
+```json
+{
+  "preferences": {
+    "chromeExtensionEnabled": true
+  },
+  "mcpServers": {
+    "newsroom": {
+      "command": "node",
+      "args": ["/Users/YOURNAME/newsroom-extension/server.js"]
+    }
+  }
+}
+```
+
+If you already have a `"mcpServers"` section with other servers, just add the `"newsroom"` entry inside it:
+
+```json
+"mcpServers": {
+  "some-other-server": { ... },
+  "newsroom": {
+    "command": "node",
+    "args": ["/Users/YOURNAME/newsroom-extension/server.js"]
+  }
+}
+```
+
+> **Tip:** Use the complete path to `server.js` starting from the root of your drive — like `/Users/jane/newsroom-extension/server.js`, not just `server.js`. If you're unsure, drag the `server.js` file onto a Terminal window (Mac) or right-click it and choose **Copy as path** (Windows).
+
+> **Watch the commas.** JSON is strict — every key-value pair needs a comma after it except the last one. If you're getting errors, paste your file into [jsonlint.com](https://jsonlint.com/) to find the problem.
 
 Save the file, then **fully quit Claude Desktop** — on Mac, click **Claude** in the menu bar → **Quit Claude**, or press `Cmd + Q`. On Windows, right-click the tray icon → **Quit**. Then reopen it. Just closing the window is not enough.
 
