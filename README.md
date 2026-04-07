@@ -22,22 +22,22 @@ That's it. The extension handles everything else automatically.
 
 ### Claude Desktop
 
-1. Open **Claude Desktop**
-2. Go to **Settings** (gear icon) → **Extensions**
-3. Click **Advanced settings**, then scroll to **Extension Developer**
-4. Click **Install Extension...** and point it to the downloaded folder
+1. [Download the extension](https://github.com/ehurrn/newsroom-extension/archive/refs/heads/main.zip) and unzip it
+2. Open a terminal in the unzipped folder and run `npm install` (requires [Node.js](https://nodejs.org/) 18+)
+3. In **Claude Desktop**, go to **Settings** (gear icon) → **Extensions**
+4. Click **Advanced settings** → **Extension Developer** → **Install Extension...**
+5. Select the `newsroom-extension` folder
 
-If prompted for manual config, see the [detailed guide](INSTALLATION.md#claude-desktop).
+Need more detail? See the [step-by-step guide](INSTALLATION.md#claude-desktop) — includes a no-terminal option.
 
 ### Claude Code (Desktop app)
 
-1. Click the **+** button next to the prompt box
-2. Select **Plugins** → **Add plugin**
-3. Follow the prompts to add from a local folder
+1. [Download the extension](https://github.com/ehurrn/newsroom-extension/archive/refs/heads/main.zip) and unzip it
+2. Open a terminal in the unzipped folder and run `npm install`
+3. Click the **+** button next to the prompt box → **Plugins** → **Add plugin**
+4. Select the `newsroom-extension` folder
 
 Or from the terminal: `claude mcp add newsroom -- node /path/to/newsroom-extension/server.js`
-
-For step-by-step instructions with screenshots, see [INSTALLATION.md](INSTALLATION.md).
 
 ## What's Inside
 

@@ -12,7 +12,7 @@ Open your terminal and paste:
 gemini extensions install https://github.com/ehurrn/newsroom-extension
 ```
 
-Done. The extension installs its own dependencies the first time it runs.
+Done. The extension automatically sets itself up the first time it runs.
 
 ### From a local copy
 
@@ -57,9 +57,11 @@ cd newsroom-extension
 npm install
 ```
 
-This downloads the extension and installs its dependencies into a folder called `newsroom-extension`.
+This downloads the extension and sets it up in a folder called `newsroom-extension`.
 
-> **Don't have `git`?** Go to [github.com/ehurrn/newsroom-extension](https://github.com/ehurrn/newsroom-extension), click the green **Code** button, then **Download ZIP**. Unzip it, then open Terminal, type `cd ` (with a space after it), drag the unzipped folder onto the Terminal window, press Enter, then type `npm install` and press Enter.
+> **Don't have `git`?** Go to [github.com/ehurrn/newsroom-extension](https://github.com/ehurrn/newsroom-extension), click the green **Code** button, then **Download ZIP**. Unzip it anywhere (your Desktop is fine). Then open Terminal, type `cd ` (with a space after it), drag the unzipped folder onto the Terminal window, press Enter, then type `npm install` and press Enter.
+>
+> **On Windows?** Instead of dragging the folder, right-click the unzipped folder, choose **Copy as path**, then in Command Prompt type `cd ` and paste the path.
 
 ### Step 2: Add to Claude Desktop
 
@@ -114,9 +116,9 @@ If you prefer, you can add it manually:
    }
    ```
 
-   > **Important:** The path must be the full path to `server.js` — not a shortcut, not `~/`, not a relative path. If you're unsure of the path, drag the `server.js` file onto your Terminal window and it will print the full path.
+   > **Important:** Use the complete path to `server.js` starting from the root of your drive — like `/Users/jane/newsroom-extension/server.js`, not just `server.js`. If you're unsure, drag the `server.js` file onto a Terminal window (Mac) or right-click it and choose **Copy as path** (Windows).
 
-3. Save the file and **restart Claude Desktop** completely (quit and reopen, not just close the window).
+3. Save the file. Then **fully quit Claude Desktop** — on Mac, click **Claude** in the menu bar → **Quit Claude**, or press `Cmd + Q`. On Windows, right-click the tray icon → **Quit**. Then reopen it. Just closing the window is not enough.
 
 ### Verify it works
 
