@@ -24,11 +24,28 @@ That's it. The extension handles everything else automatically.
 
 1. [Download the extension](https://github.com/ehurrn/newsroom-extension/archive/refs/heads/main.zip) and unzip it
 2. Open a terminal in the unzipped folder and run `npm install` (requires [Node.js](https://nodejs.org/) 18+)
-3. In **Claude Desktop**, go to **Settings** (gear icon) → **Extensions**
-4. Click **Advanced settings** → **Extension Developer** → **Install Extension...**
-5. Select the `newsroom-extension` folder
+3. Open your Claude Desktop config file and add the `newsroom` MCP server (see below)
+4. Fully quit and reopen Claude Desktop
 
-Need more detail? See the [step-by-step guide](INSTALLATION.md#claude-desktop) — includes a no-terminal option.
+**Config file location:**
+
+- **Mac:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+
+Add this to the file (replace the path with where you put the folder):
+
+```json
+{
+  "mcpServers": {
+    "newsroom": {
+      "command": "node",
+      "args": ["/full/path/to/newsroom-extension/server.js"]
+    }
+  }
+}
+```
+
+Need more detail? See the [step-by-step guide](INSTALLATION.md#claude-desktop).
 
 ### Claude Code (Desktop app)
 

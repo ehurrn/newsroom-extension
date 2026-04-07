@@ -65,60 +65,49 @@ This downloads the extension and sets it up in a folder called `newsroom-extensi
 
 ### Step 2: Add to Claude Desktop
 
-#### Option A: Through the Settings UI
+Open your Claude Desktop config file in a text editor:
 
-1. Open **Claude Desktop**
-2. Click the **gear icon** (⚙️) to open **Settings**
-3. Go to **Extensions**
-4. Click **Advanced settings**
-5. Scroll to the **Extension Developer** section
-6. Click **Install Extension...** and select the `newsroom-extension` folder you downloaded
+**Mac:** Open Finder, press `Cmd + Shift + G`, paste this path and hit Enter:
+```
+~/Library/Application Support/Claude/claude_desktop_config.json
+```
 
-#### Option B: Edit the config file
+**Windows:** Open File Explorer, paste this into the address bar:
+```
+%APPDATA%\Claude\claude_desktop_config.json
+```
 
-If you prefer, you can add it manually:
+If the file is empty or doesn't exist, paste this entire block. Replace the path with where you downloaded the extension:
 
-1. Open the config file in a text editor:
+**Mac example:**
+```json
+{
+  "mcpServers": {
+    "newsroom": {
+      "command": "node",
+      "args": ["/Users/YOURNAME/newsroom-extension/server.js"]
+    }
+  }
+}
+```
 
-   **Mac:** Open Finder, press `Cmd + Shift + G`, paste this path and hit Enter:
-   ```
-   ~/Library/Application Support/Claude/claude_desktop_config.json
-   ```
+**Windows example:**
+```json
+{
+  "mcpServers": {
+    "newsroom": {
+      "command": "node",
+      "args": ["C:\\Users\\YOURNAME\\newsroom-extension\\server.js"]
+    }
+  }
+}
+```
 
-   **Windows:** Open File Explorer, paste this into the address bar:
-   ```
-   %APPDATA%\Claude\claude_desktop_config.json
-   ```
+> **Important:** Use the complete path to `server.js` starting from the root of your drive — like `/Users/jane/newsroom-extension/server.js`, not just `server.js`. If you're unsure, drag the `server.js` file onto a Terminal window (Mac) or right-click it and choose **Copy as path** (Windows).
 
-2. Add the newsroom server. If the file is empty or doesn't exist, paste this entire block (replace the path with where you downloaded the extension):
+If the file already has other MCP servers in it, add the `"newsroom": { ... }` block inside the existing `"mcpServers"` object — don't replace the whole file.
 
-   **Mac example:**
-   ```json
-   {
-     "mcpServers": {
-       "newsroom": {
-         "command": "node",
-         "args": ["/Users/YOURNAME/newsroom-extension/server.js"]
-       }
-     }
-   }
-   ```
-
-   **Windows example:**
-   ```json
-   {
-     "mcpServers": {
-       "newsroom": {
-         "command": "node",
-         "args": ["C:\\Users\\YOURNAME\\newsroom-extension\\server.js"]
-       }
-     }
-   }
-   ```
-
-   > **Important:** Use the complete path to `server.js` starting from the root of your drive — like `/Users/jane/newsroom-extension/server.js`, not just `server.js`. If you're unsure, drag the `server.js` file onto a Terminal window (Mac) or right-click it and choose **Copy as path** (Windows).
-
-3. Save the file. Then **fully quit Claude Desktop** — on Mac, click **Claude** in the menu bar → **Quit Claude**, or press `Cmd + Q`. On Windows, right-click the tray icon → **Quit**. Then reopen it. Just closing the window is not enough.
+Save the file, then **fully quit Claude Desktop** — on Mac, click **Claude** in the menu bar → **Quit Claude**, or press `Cmd + Q`. On Windows, right-click the tray icon → **Quit**. Then reopen it. Just closing the window is not enough.
 
 ### Verify it works
 
