@@ -1,4 +1,4 @@
-# Newsroom Extension
+# Newsroom
 
 An AI-powered investigative journalism toolkit. 15 skills covering OSINT, FOIA engineering, corporate veil piercing, libel defense, and full editorial workflow — from first lead to published story.
 

@@ -1,8 +1,8 @@
-# Newsroom Extension – Gemini CLI Configuration
+# Newsroom – Gemini CLI Configuration
 
 ## Overview
 
-The **Newsroom Extension** is a full-stack AI toolkit for investigative journalism and editorial operations. It provides specialized sub-agents (desks) that coordinate sequentially to research, validate, format, and publish high-integrity journalism.
+The **Newsroom** is a full-stack AI toolkit for investigative journalism and editorial operations. It provides specialized sub-agents (desks) that coordinate sequentially to research, validate, format, and publish high-integrity journalism.
 
 This configuration defines the delegation protocol and operational workflow for the Gemini CLI.
 
@@ -123,7 +123,7 @@ If any desk encounters a hard blocker:
 
 ## Platform Support
 
-This extension runs on:
+Newsroom runs on:
 - **Gemini CLI** (`gemini extensions install` — reads skill files directly)
 - **Cowork / Claude Code** (Cowork marketplace plugin — reads `skills/` and `commands/` natively)
 
