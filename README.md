@@ -1,5 +1,10 @@
 # Newsroom
 
+![Version](https://img.shields.io/badge/version-3.0.0-blue.svg)
+![License](https://img.shields.io/badge/license-Unlicense-brightgreen.svg)
+![Gemini](https://img.shields.io/badge/Gemini_CLI-supported-4285F4.svg)
+![Cowork](https://img.shields.io/badge/Cowork-supported-D97757.svg)
+
 An AI-powered investigative journalism toolkit. 15 skills covering OSINT, FOIA engineering, corporate veil piercing, libel defense, and full editorial workflow — from first lead to published story.
 
 Works with **Gemini CLI** and **Claude** (Cowork, Claude Code).
