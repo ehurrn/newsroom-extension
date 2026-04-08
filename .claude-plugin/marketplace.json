@@ -1,13 +1,40 @@
 {
   "name": "newsroom",
-  "owner": {
-    "name": "ehurrn"
+  "displayName": "Newsroom",
+  "description": "Full-stack AI toolkit for investigative journalism and editorial operations.",
+  "version": "3.0.0",
+  "license": "The Unlicense",
+  "repository": "https://github.com/ehurrn/newsroom-extension.git",
+  "homepage": "https://github.com/ehurrn/newsroom-extension.git",
+  "publisher": "ehurrn",
+  "author": {
+    "name": "ehurrn",
+    "email": "ehurrn@users.noreply.github.com"
   },
+  "owner": {
+    "name": "ehurrn",
+    "email": "ehurrn@users.noreply.github.com"
+  },
+  "categories": [
+    "Productivity",
+    "News",
+    "AI Assistant",
+    "Research"
+  ],
+  "keywords": [
+    "investigative journalism",
+    "newsroom ops",
+    "foia engineering",
+    "osint curation",
+    "editorial review",
+    "desk operations",
+    "publishing"
+  ],
+  "readme": "README.md",
   "plugins": [
     {
       "name": "newsroom",
       "description": "Full-stack AI newsroom toolkit. Investigative journalism and newsroom operations.",
-      "version": "3.0.0",
       "source": "url",
       "url": "https://github.com/ehurrn/newsroom-extension.git"
     }
