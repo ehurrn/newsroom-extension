@@ -1,8 +1,13 @@
 {
   "name": "newsroom-extension",
   "version": "3.0.1",
-  "description": "Full-stack AI newsroom toolkit. Investigative journalism (OSINT, entity mapping, FOIA, corporate veil piercing, libel defense) and newsroom operations (copy review, editorial review, publishing, social distribution, data archival).",
+  "description": "Full-stack AI newsroom toolkit for investigative journalism and newsroom operations.",
   "author": {
-    "name": "ehurrn"
-  }
+    "name": "ehurrn",
+    "email": "ehurrn@users.noreply.github.com"
+  },
+  "license": "The Unlicense",
+  "homepage": "https://github.com/ehurrn/newsroom-extension",
+  "repository": "https://github.com/ehurrn/newsroom-extension"
 }
+~                                                                     
