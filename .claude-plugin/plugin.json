@@ -1,6 +1,6 @@
 {
-  "name": "newsroom",
-  "version": "3.0.0",
+  "name": "newsroom-extension",
+  "version": "3.0.1",
   "description": "Full-stack AI newsroom toolkit. Investigative journalism (OSINT, entity mapping, FOIA, corporate veil piercing, libel defense) and newsroom operations (copy review, editorial review, publishing, social distribution, data archival).",
   "author": {
     "name": "ehurrn"
