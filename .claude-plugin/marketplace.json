@@ -2,7 +2,7 @@
   "name": "newsroom-extension",
   "displayName": "Newsroom",
   "description": "Full-stack AI toolkit for investigative journalism and editorial operations.",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "license": "The Unlicense",
   "repository": "https://github.com/ehurrn/newsroom-extension.git",
   "homepage": "https://github.com/ehurrn/newsroom-extension.git",
