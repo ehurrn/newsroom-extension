@@ -8,7 +8,8 @@
       "name": "newsroom",
       "description": "Full-stack AI newsroom toolkit. Investigative journalism and newsroom operations.",
       "version": "3.0.0",
-      "source": "."
+      "source": "url",
+      "url: "https://github.com/ehurrn/newsroom-extension.git"
     }
   ]
 }
