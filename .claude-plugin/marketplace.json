@@ -35,7 +35,7 @@
     {
       "name": "newsroom-extension",
       "description": "Full-stack AI newsroom toolkit. Investigative journalism and newsroom operations.",
-      "source": "url",
+      "source": "git",
       "url": "https://github.com/ehurrn/newsroom-extension.git"
     }
   ]
