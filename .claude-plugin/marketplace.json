@@ -1,42 +1,123 @@
 {
   "name": "newsroom-extension",
   "displayName": "Newsroom",
-  "description": "Full-stack AI toolkit for investigative journalism and editorial operations.",
-  "version": "3.0.1",
-  "license": "The Unlicense",
-  "repository": "https://github.com/ehurrn/newsroom-extension.git",
-  "homepage": "https://github.com/ehurrn/newsroom-extension.git",
-  "publisher": "ehurrn",
-  "author": {
-    "name": "ehurrn",
-    "email": "ehurrn@users.noreply.github.com"
-  },
-  "owner": {
-    "name": "ehurrn",
-    "email": "ehurrn@users.noreply.github.com"
-  },
-  "categories": [
-    "Productivity",
-    "News",
-    "AI Assistant",
-    "Research"
-  ],
-  "keywords": [
-    "investigative journalism",
-    "newsroom ops",
-    "foia engineering",
-    "osint curation",
-    "editorial review",
-    "desk operations",
-    "publishing"
-  ],
-  "readme": "README.md",
+  "source": {
+	"source": "github",
+	"repo": "ehurrn/newsroom-extension"
+},
+  "metadata.description": "Full-stack AI toolkit for investigative journalism and editorial operations.",
+  "metadata.version": "3.0.1",
+  "owner": { 
+	"name": "ehurrn"
+	"email": "ehurrn@users.noreply.github.com"
+},
+{
   "plugins": [
     {
-      "name": "newsroom-extension",
-      "description": "Full-stack AI newsroom toolkit. Investigative journalism and newsroom operations.",
-      "source": "git",
-      "url": "https://github.com/ehurrn/newsroom-extension.git"
+      "name": "investigative-journalist",
+      "version": "3.0.1",
+      "description": "Expose abuses of public trust and investigate corruption by converting speculation into bulletproof documentation.",
+      "source": "github",
+      "command": "https://github.com/ehurrn/newsroom-extension/skills/investigative-journalist/SKILL.md",
+    },
+    {
+      "name": "muckraker-master-file",
+      "version": "3.0.1",
+      "description": "Construct a relational registry of entities, evidence, and gaps to build a systemic case.",
+      "source": "github",
+      "command": "https://github.com/ehurrn/newsroom-extension/skills/investigative-journalist/muckraker-master-file.md",
+    },
+    {
+      "name": "structural-dependency-mapping",
+      "version": "3.0.1",
+      "description": "Trace hidden incentive alignments and tacit relationships to expose systemic corruption.",
+      "source": "github",
+      "command": "https://github.com/ehurrn/newsroom-extension/skills/investigative-journalist/istructural-dependency-mapping.md",
+    },
+    {
+      "name": "osint-source-inversion",
+      "version": "3.0.1",
+      "description": "Research blocked or opaque targets via their adversaries' records and regulatory complaints.",
+      "source": "github",
+      "command": "https://github.com/ehurrn/newsroom-extension/skills/investigative-journalist/osint-source-inversion.md",
+    },
+    {
+      "name": "temporal-anomaly-sequencing",
+      "version": "3.0.1",
+      "description": "Detect suspicious chronological compression or delays signaling coordinated malfeasance.",
+      "source": "github",
+      "command": "https://github.com/ehurrn/newsroom-extension/skills/investigative-journalist/temporal-anomaly-sequencing.md",
+    },
+    {
+      "name": "precision-foia-engineering",
+      "version": "3.0.1",
+      "description": "Draft surgically precise public records requests to prevent agency denial tactics.",
+      "source": "github",
+      "command": "https://github.com/ehurrn/newsroom-extension/skills/investigative-journalist/precision-foia-engineering.md",
+    },
+    {
+      "name": "corporate-veil-piercing",
+      "version": "3.0.1",
+      "description": "Break down anonymous corporate structures to identify beneficial ownership via OSINT and UCC filings.",
+      "source": "github",
+      "command": "https://github.com/ehurrn/newsroom-extension/skills/investigative-journalist/corporate-veil-piercing.md",
+    },
+    {
+      "name": "zero-error-defensive-audit",
+      "version": "3.0.1",
+      "description": "Strip narrative risk from drafts and anchor every sentence to documentary evidence for libel defense.",
+      "source": "github",
+      "command": "https://github.com/ehurrn/newsroom-extension/skills/investigative-journalist/zero-error-defense-audit",
+    },
+    {
+      "name": "data-archivist",
+      "version": "3.0.1",
+      "description": "Transform raw OSINT into queryable databases with a documented chain of custody.",
+      "source": "github",
+      "command": "https://github.com/ehurrn/newsroom-extension/skills/data-archivst.md",
+    },
+    {
+      "name": "copy-review",
+      "version": "3.0.1",
+      "description": "Technical publishing QA for readability, accessibility, and SEO metadata integrity.",
+      "source": "github",
+      "command": "https://github.com/ehurrn/newsroom-extension/skills/copy-review.md",
+    },
+    {
+      "name": "social-distributor",
+      "version": "3.0.1",
+      "description": "Convert fact-checked articles into platform-optimized, legally defensible social posts.",
+      "source": "github",
+      "command": "https://github.com/ehurrn/newsroom-extension/skills/social-distributor.md",
+    },
+    {
+      "name": "final-editor-review",
+      "version": "3.0.1",
+      "description": "Adversarial libel filter that verifies all financial assertions and motives before publication.",
+      "source": "github",
+      "command": "https://github.com/ehurrn/newsroom-extension/skills/final-editor-review.md",
+    },
+    {
+      "name": "publish-article",
+      "version": "3.0.1",
+      "description": "Safe, file-by-file deployment of approved articles with post-deployment verification.",
+      "source": "github",
+      "command": "https://github.com/ehurrn/newsroom-extension/skills/publish-article.md",
+    },
+    {
+      "name": "publish-series",
+      "version": "3.0.1",
+      "description": "Coordinate multi-part series release with sequential editorial gates and cross-article linking.",
+      "source": "github",
+      "command": "https://github.com/ehurrn/newsroom-extension/skills/publish-series.md",
+    },
+    {
+      "name": "managing-editor",
+      "version": "3.0.1",
+      "description": "Newsroom air-traffic controller managing sessions, TODOs, and cross-desk coordination.",
+      "source": "github",
+      "command": "https://github.com/ehurrn/newsroom-extension/skills/managing-editor.md"
     }
   ]
+ }
 }
