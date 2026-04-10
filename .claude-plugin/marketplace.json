@@ -1,7 +1,6 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "newsroom-extension",
-  "displayName": "Newsroom",
   "source": {
 	"source": "github",
 	"repo": "ehurrn/newsroom-extension"
