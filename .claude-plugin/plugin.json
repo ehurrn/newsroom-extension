@@ -2,11 +2,14 @@
   "name": "newsroom-extension",
   "version": "3.0.1",
   "description": "Full-stack AI newsroom toolkit for investigative journalism and newsroom operations.",
-  "author": {
+  "owner": {
     "name": "ehurrn",
     "email": "ehurrn@users.noreply.github.com"
   },
-  "license": "The Unlicense",
-  "homepage": "https://github.com/ehurrn/newsroom-extension",
-  "repository": "https://github.com/ehurrn/newsroom-extension"
+  "plugins": [
+    {
+      "name": "investigative-journalist",
+      "description": "Expose abuses of public trust and investigate corruption by converting speculation into bulletproof documentation."
+    }
+  ]
 }

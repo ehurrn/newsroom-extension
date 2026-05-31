@@ -1,0 +1,18 @@
+{
+  "name": "newsroom-extension",
+  "displayName": "Newsroom",
+  "version": "3.0.1",
+  "description": "Full-stack AI toolkit for investigative journalism and editorial operations.",
+  "author": "ehurrn",
+  "license": "Unlicense",
+  "repository": "https://github.com/ehurrn/newsroom-extension",
+  "keywords": [
+    "investigative journalism",
+    "OSINT",
+    "corruption",
+    "libel defense",
+    "newsroom",
+    "editorial",
+    "publishing"
+  ]
+}
