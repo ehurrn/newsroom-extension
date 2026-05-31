@@ -1,6 +1,6 @@
 # Newsroom
 
-![Version](https://img.shields.io/badge/version-3.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-3.0.1-blue.svg)
 ![License](https://img.shields.io/badge/license-Unlicense-brightgreen.svg)
 ![Gemini](https://img.shields.io/badge/Gemini_CLI-supported-4285F4.svg)
 ![Cowork](https://img.shields.io/badge/Cowork-supported-D97757.svg)
