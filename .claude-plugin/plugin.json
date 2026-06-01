@@ -6,6 +6,36 @@
     "name": "ehurrn",
     "email": "ehurrn@users.noreply.github.com"
   },
+  "commands": [
+    {
+      "name": "investigate",
+      "path": "../commands/investigate.md"
+    },
+    {
+      "name": "copy-review",
+      "path": "../commands/copy-review.md"
+    },
+    {
+      "name": "editor-review",
+      "path": "../commands/editor-review.md"
+    },
+    {
+      "name": "publish",
+      "path": "../commands/publish.md"
+    },
+    {
+      "name": "publish-series",
+      "path": "../commands/publish-series.md"
+    },
+    {
+      "name": "distribute",
+      "path": "../commands/distribute.md"
+    },
+    {
+      "name": "archive",
+      "path": "../commands/archive.md"
+    }
+  ],
   "plugins": [
     {
       "name": "investigative-journalist",
