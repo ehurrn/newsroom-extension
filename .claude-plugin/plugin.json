@@ -9,37 +9,45 @@
   "commands": [
     {
       "name": "investigate",
-      "path": "../commands/investigate.md"
+      "description": "Launch an investigation — entity mapping, dependency tracing, OSINT, FOIA, and libel-proof documentation",
+      "argument": "<topic, entity, or lead to investigate>",
+      "prompt": "Investigate: @$1\n\nLoad the `investigative-journalist` skill and follow its full framework — master file construction, structural dependency mapping, OSINT source inversion, FOIA engineering, corporate veil piercing, temporal anomaly sequencing, and zero-error defensive audit."
     },
     {
       "name": "copy-review",
-      "path": "../commands/copy-review.md"
+      "description": "Line-edit for readability, accessibility, and SEO without touching facts",
+      "argument": "<article file or text to review>",
+      "prompt": "Review: @$1\n\nLoad the `copy-review` skill. Focus on readability, accessibility, SEO metadata, typographical errors, rhythm, and ad placement conflicts. Do NOT alter facts, sourcing, or editorial judgment — that belongs to `/editor-review`."
     },
     {
       "name": "editor-review",
-      "path": "../commands/editor-review.md"
+      "description": "Final editorial review — fact verification, legal risk, sourcing, publication readiness",
+      "argument": "<article text or file to review>",
+      "prompt": "Editor review: @$1\n\nLoad the `final-editor-review` skill. Verify all assertions against sources, assess libel/legal risk, check attribution quality, and sign off on publication readiness."
     },
     {
       "name": "publish",
-      "path": "../commands/publish.md"
+      "description": "Safe single-article deployment with pre-flight checklist",
+      "argument": "<article file path>",
+      "prompt": "Publish: @$1\n\nLoad the `publish-article` skill. Pre-flight checklist: legal sign-off, fact check completion, author/editor sign-offs. Deploy safely with post-publish verification."
     },
     {
       "name": "publish-series",
-      "path": "../commands/publish-series.md"
+      "description": "Coordinated deployment of a multi-part investigative series",
+      "argument": "<series folder or article list>",
+      "prompt": "Publish series: @$1\n\nLoad the `publish-series` skill. Coordinate sequential release with editorial gates between parts, cross-article linking, and audience engagement tracking."
     },
     {
       "name": "distribute",
-      "path": "../commands/distribute.md"
+      "description": "Generate platform-optimized social posts from a published article",
+      "argument": "<published article URL or file>",
+      "prompt": "Distribute: @$1\n\nLoad the `social-distributor` skill. Generate platform-optimized posts (Twitter, LinkedIn, etc.) with legally defensible copy and attribution."
     },
     {
       "name": "archive",
-      "path": "../commands/archive.md"
-    }
-  ],
-  "plugins": [
-    {
-      "name": "investigative-journalist",
-      "description": "Expose abuses of public trust and investigate corruption by converting speculation into bulletproof documentation."
+      "description": "Ingest raw OSINT into a queryable database with chain of custody",
+      "argument": "<raw documents or data source>",
+      "prompt": "Archive: @$1\n\nLoad the `data-archivist` skill. Transform raw documents into structured, queryable databases with documented chain of custody."
     }
   ]
 }
