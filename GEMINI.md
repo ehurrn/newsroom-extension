@@ -13,6 +13,7 @@ All investigative and editorial work flows through a sequential desk-ordering sy
 **Loading Desk Instructions:** Each desk's instructions are stored as markdown files in the `skills/` directory. Read the relevant `SKILL.md` file to load a desk's operational guidelines. Sub-skills within the investigative-journalist desk are separate `.md` files in `skills/investigative-journalist/`.
 
 Each desk:
+- Runs the `evidence-preservation-protocol` handoff checklist before passing work on (all evidence preserved + hashed, citations logged, nothing deleted)
 - Receives artifacts from the previous desk
 - Performs focused, high-stakes work (research, validation, formatting, review, deployment)
 - Passes validated output to the next desk
@@ -28,7 +29,9 @@ No desk executes in parallel; this ensures accountability, traceability, and err
 **Input:** Research brief, research objectives, leads, public records
 **Output:** Raw findings documented in the Master File
 **Sub-skills** (each a separate file in `skills/investigative-journalist/`):
-- `muckraker-master-file.md` — Entity mapping and Master File construction
+- `muckraker-master-file.md` — Entity mapping and Master File construction (schema: `schemas/master-file.schema.json`)
+- `evidence-preservation-protocol.md` — MANDATORY: write-once evidence store, append-only collection log, legal hold; its checklist runs at every desk handoff
+- `subject-dossier-construction.md` — PI-grade public records sweeps and subject dossiers
 - `structural-dependency-mapping.md` — Dependency tracing (funds, board ties, contracts)
 - `osint-source-inversion.md` — Open-source intelligence curation
 - `temporal-anomaly-sequencing.md` — Timeline sequencing of events

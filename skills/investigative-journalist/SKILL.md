@@ -58,6 +58,37 @@ Dismantle shell company networks and hidden ownership structures:
 - Identify nominee directors, straw entities, and layered holding companies.
 - Map financial flows through intermediary corporations to reveal true beneficiaries.
 
+### 8. `evidence-preservation-protocol` (MANDATORY — loaded at investigation start)
+Spoliation-proof record keeping that runs underneath every other sub-skill:
+- Write-once `evidence/` directory: every collected item saved and SHA-256 hashed at intake, never modified or deleted.
+- Web sources archived to a third party (Wayback/archive.today) **at collection time**, plus a local copy.
+- Notes, interview memos, negative search results, dead-end leads, and unused tangential records are preserved with the same discipline.
+- Drafts are immutable versions — never overwritten.
+- Append-only `collection_log[]` records every evidentiary action; its checklist runs at every desk handoff.
+- `legal_hold` defaults to true: nothing is deleted, even for killed stories. Deletion requests escalate to `managing-editor`.
+
+### 9. `subject-dossier-construction`
+Private-investigator-grade subject workups:
+- Resolve identity with two independent anchors before any sweep (prevents wrong-person retractions).
+- Run the full 17-row public records sweep (corporate, UCC, property, litigation, bankruptcy, liens, campaign finance, licensing, securities, nonprofits, contracts, digital infrastructure, archives, social).
+- Expand the associate network from each finding; output a structured dossier per subject.
+
+## Data Schema: The Master File Is Structured Data
+
+All investigation state lives in a single `master-file.json` conforming to [`schemas/master-file.schema.json`](schemas/master-file.schema.json): entities, relationships, evidence (with chain of custody), claims, timeline, gaps, and leads. Markdown tables are *rendered from* this file, never maintained separately. Key invariants:
+
+- **Every evidence item is graded** on the Admiralty scale (`reliability` A–F × `credibility` 1–6) at intake.
+- **Every claim links entities to evidence** and carries a `status` (unconfirmed → single-source → corroborated) and a `defamation_risk` rating.
+- **Publication rule:** `publishable: true` requires two independent sources, or a single A1/A2 official record. Two outlets citing the same wire story are one source.
+- **Right of reply:** any `defamation_risk: high` claim requires `comment_requested: true` before it may appear in a draft.
+- **Leads are not claims.** Hunches live in `leads[]` and never enter a draft.
+- **Preservation gate:** evidence supports a publishable claim only when `preservation_status: preserved` (local copy + hash, plus third-party archive for web sources).
+- **Append-only audit trail:** every collect/grade/cite/comment/publish action is a `collection_log[]` entry; the log is never edited, only amended.
+
+## Legal & Ethical Boundary
+
+In scope: public records, lawful FOIA, archives, and what subjects voluntarily published. Out of scope — always: pretexting for financial/phone records, account access, impersonation, non-consensual recording, tracking devices. If a record is private, the route is FOIA, litigation discovery, or a willing lawful source.
+
 ## TDD: Neutralizing Rationalizations
 
 If you (the agent) feel these pressures, apply these counters immediately:
@@ -78,12 +109,13 @@ Avoid generic web searches. Direct queries to:
 
 ## Implementation Workflow
 
-1. **Initialize Master File** → Register all entities and preliminary claims
-2. **Map Structural Dependencies** → Trace financial and relational ties
-3. **Conduct OSINT Inversion** → Research adversary documents and regulatory records
-4. **Sequence Temporal Anomalies** → Timeline all events to detect pattern compression
-5. **Audit Zero-Error Prose** → Convert every sentence to documentary backing
-6. **Execute Defensive Review** → Prepare for legal scrutiny before publication
+1. **Initialize Master File + Preservation** → Create `master-file.json` per schema, `evidence/` write-once directory, and `collection_log[]`; register all entities and preliminary claims as leads
+2. **Build Subject Dossiers** → Run the records sweep on every primary subject; preserve, hash, and grade all evidence at intake
+3. **Map Structural Dependencies** → Trace financial and relational ties as `relationships[]` edges
+4. **Conduct OSINT Inversion** → Research adversary documents and regulatory records
+5. **Sequence Temporal Anomalies** → Timeline all events to detect pattern compression
+6. **Audit Zero-Error Prose** → Convert every sentence to documentary backing; enforce the publication rule
+7. **Execute Defensive Review** → Right-of-reply for high-risk claims; prepare for legal scrutiny before publication
 
 ## Newsroom Operations Layer
 
@@ -98,4 +130,4 @@ This investigative framework integrates with newsroom desk skills:
 
 ---
 
-**Required Background:** You MUST understand `writing-skills` patterns (Red Flags, Stop and Start Over) to maintain the discipline of this investigative tool.
+**Discipline:** When a Red Flag in any sub-skill fires (e.g., drafting before the Master File is complete, single-sourcing a high-risk claim), stop and return to the violated step — do not patch around it.

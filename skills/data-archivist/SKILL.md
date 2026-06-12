@@ -17,6 +17,8 @@ This is NOT data analysis (that's downstream). This IS:
 - **Reproducible queries:** Saved SQL patterns, not ad-hoc summaries
 - **Resource optimization:** Free tier awareness (BigQuery free tier limits, PostgreSQL disk constraints, SQLite for local-first)
 
+**Binding protocol:** This desk operates under `skills/investigative-journalist/evidence-preservation-protocol.md`. Originals in the write-once `evidence/` directory are never modified — all transformation outputs (OCR text, cleaned CSVs, database loads) are derived copies in `working/` that cite their source `DOC-` ID and hash. Every ingest, transform, and export is an entry in the master file's append-only `collection_log[]`. Nothing is deleted while `legal_hold` is true (the default).
+
 ---
 
 ## Data Ingestion Standardization

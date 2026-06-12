@@ -1,13 +1,13 @@
 # Newsroom
 
-![Version](https://img.shields.io/badge/version-3.0.1-blue.svg)
+![Version](https://img.shields.io/badge/version-3.1.0-blue.svg)
 ![License](https://img.shields.io/badge/license-Unlicense-brightgreen.svg)
 ![Gemini](https://img.shields.io/badge/Gemini_CLI-supported-4285F4.svg)
 ![Cowork](https://img.shields.io/badge/Cowork-supported-D97757.svg)
 
-An AI-powered investigative journalism toolkit. 15 skills covering OSINT, FOIA engineering, corporate veil piercing, libel defense, and full editorial workflow — from first lead to published story.
+An AI-powered investigative journalism toolkit. 17 skills covering subject dossiers, OSINT, FOIA engineering, corporate veil piercing, evidence preservation, libel defense, and full editorial workflow — from first lead to published story.
 
-Works with **Gemini CLI** and **Claude** (Cowork, Claude Code).
+Works with **Claude** (Cowork, Claude Code), **Gemini CLI**, and any **AGENTS.md-aware agent** (OpenAI Codex, Cursor — see [AGENTS.md](AGENTS.md)).
 
 ## Installation
 
@@ -48,7 +48,9 @@ Domain knowledge used automatically when relevant. On Gemini CLI, ask the agent 
 | Skill | What it does |
 |---|---|
 | `investigative-journalist` | Scope your investigation, define claims, map what you need to prove |
-| `muckraker-master-file` | Build your central intelligence file — sources, findings, gaps, risks |
+| `muckraker-master-file` | Build your central intelligence file — structured `master-file.json` of entities, evidence, claims, gaps |
+| `evidence-preservation-protocol` | Mandatory: write-once evidence store, append-only collection log, legal hold — delete nothing |
+| `subject-dossier-construction` | PI-grade public records sweep and structured dossier per subject |
 | `structural-dependency-mapping` | Uncover hidden connections between people, organizations, and money |
 | `corporate-veil-piercing` | Trace corporate structures, shell companies, and beneficial ownership |
 | `zero-error-defensive-audit` | Fact-check every claim with source attribution and confidence scoring |
@@ -79,7 +81,28 @@ Define investigation → Gather intelligence → Map connections
   → Verify claims → Edit and review → Publish → Track what's next
 ```
 
-See [GEMINI.md](GEMINI.md) for the full sub-agent delegation protocol and desk ordering.
+See [GEMINI.md](GEMINI.md) for the full sub-agent delegation protocol and desk ordering. AGENTS.md-aware tools (OpenAI Codex, Cursor) get the same operating model via [AGENTS.md](AGENTS.md).
+
+## Data Schema & Evidence Discipline
+
+All investigation state lives in a single `master-file.json` conforming to [`skills/investigative-journalist/schemas/master-file.schema.json`](skills/investigative-journalist/schemas/master-file.schema.json) — entities, typed relationships, graded evidence, claims, timeline, gaps, leads, and an append-only collection log. Markdown reports are rendered from it, never maintained separately.
+
+Core invariants enforced across every desk:
+
+- **Grade at intake** — every evidence item carries an Admiralty grade (source reliability A–F × information credibility 1–6) and a chain-of-custody block (where obtained, when, how, SHA-256 hash).
+- **Preserve everything, delete nothing** — collected items go into a write-once `evidence/` directory; web sources are archived to a third party (Wayback/archive.today) at collection time. Notes, negative search results, dead-end leads, and drafts are retained under legal hold (on by default).
+- **Append-only audit trail** — every collect/grade/cite/comment/publish action is a `collection_log[]` entry with a monotonic sequence number; the log is never edited, only amended.
+- **Publication rule** — a claim is publishable only when corroborated by two independent sources, or single-sourced to an A1/A2 official record.
+- **Right of reply** — high defamation-risk claims require a documented comment request before drafting.
+- **Legal boundary** — public records and lawful FOIA only; no pretexting, account access, impersonation, or non-consensual recording.
+
+## What's New in 3.1.0
+
+- **Fixed Claude Code installability** — `marketplace.json` now registers one plugin sourced from the repo root (it previously listed skill markdown files as plugins, which could not install); removed the unsupported inline commands array from `plugin.json` (commands are auto-discovered from `commands/`); unified name and version across all manifests.
+- **New: machine-readable Master File schema** (`schemas/master-file.schema.json`) replacing markdown-only tables.
+- **New skill: `subject-dossier-construction`** — PI-grade identity resolution and a 17-row public records sweep per subject.
+- **New skill: `evidence-preservation-protocol`** — mandatory spoliation-proof record keeping with desk-handoff checklists.
+- **New: `AGENTS.md`** — compatibility with OpenAI Codex, Cursor, and other AGENTS.md-aware agents.
 
 ## License
 

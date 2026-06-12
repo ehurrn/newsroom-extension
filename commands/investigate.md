@@ -15,7 +15,9 @@ Load the `investigative-journalist` skill and follow its full framework — mast
 
 | Sub-skill | When to use |
 |-----------|-------------|
-| `muckraker-master-file` | First — build the relational record of all entities and evidence |
+| `muckraker-master-file` | First — initialize `master-file.json` (see `schemas/master-file.schema.json`) with entities, evidence, claims |
+| `evidence-preservation-protocol` | Always loaded — write-once `evidence/` store, append-only collection log, legal hold |
+| `subject-dossier-construction` | Run the full public-records sweep on each named subject; grade all evidence |
 | `structural-dependency-mapping` | Trace indirect flows and tacit relationships |
 | `osint-source-inversion` | Harvest public records, filings, registrations |
 | `precision-foia-engineering` | Draft targeted FOIA/public records requests |

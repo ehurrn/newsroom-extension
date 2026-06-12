@@ -19,11 +19,15 @@ A relational database schema for investigations. Before writing a single paragra
 
 **NOT** for: Quick fact-checks or single-document analysis. Start here only if you're building a systemic case.
 
+## Canonical Format
+
+The Master File is structured data first: maintain `master-file.json` conforming to [`schemas/master-file.schema.json`](schemas/master-file.schema.json) and render the tables below from it. The schema adds two tables beyond the three shown here — **Relationships** (typed, evidenced edges between entities: owns, funds, shares-address, registered-agent-for…) and **Leads** (hunches that carry zero evidentiary weight and never enter a draft). Every evidence item must carry an Admiralty grade (`reliability` A–F, `credibility` 1–6) and a chain-of-custody block (where obtained, when, how, file hash) at intake.
+
 ## Core Pattern: Entity Registry
 
 ### Structure
 
-Each investigation needs three tables:
+Each investigation needs five tables; the three core ones:
 
 #### 1. Entities Table
 Register every actor with a distinct role. Never use a person's name without context.
