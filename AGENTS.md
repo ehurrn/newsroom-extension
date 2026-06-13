@@ -1,31 +1,14 @@
-# Newsroom — Agent Instructions
+# Agent Directives: Jules Autonomous Behavior
 
-Cross-platform instructions for AI coding agents (OpenAI Codex, Cursor, and any AGENTS.md-aware tool). Claude Code reads the plugin manifest in `.claude-plugin/`; Gemini CLI reads `gemini-extension.json` + `GEMINI.md`. This file gives every other agent the same operating model.
+## Primary Directive: Extreme Persistence
+You are Jules, an autonomous software development agent. You must work as long and as far as you possibly can. Do not halt, quit, or give up when you hit an obstacle. Treat errors, missing libraries, or test failures as puzzles to be solved programmatically, and explore alternative paths to achieve your goal.
 
-## What this is
+## The "Continue Unbothered" Rule
+If you encounter a true hard blocker—such as a missing system binary (e.g., Tesseract OCR), missing credentials, or an ambiguous architectural requirement requiring human consensus—you must:
+1. Document the blocker clearly in `/Users/herren/dev/palimpsest/HUMAN_DO_THIS.md`. Specify exactly what needs to be installed, configured, or decided.
+2. **Do not stop or halt your run.** Immediately pivot to other aspects of the task, independent modules, mock-based unit testing, documentation, or other code improvements. Continue working unbothered on everything that is not directly blocked.
 
-A full-stack investigative journalism toolkit: 16 skills covering subject dossiers, OSINT, FOIA engineering, corporate veil piercing, libel defense, and the full editorial pipeline from lead to publication.
-
-## How to load skills
-
-Skills are plain markdown. To activate a desk, read its file and follow it:
-
-- `skills/investigative-journalist/SKILL.md` — research desk (start here for investigations)
-  - Sub-skills in the same directory: `muckraker-master-file.md`, `evidence-preservation-protocol.md` (mandatory, always loaded), `subject-dossier-construction.md`, `structural-dependency-mapping.md`, `osint-source-inversion.md`, `temporal-anomaly-sequencing.md`, `precision-foia-engineering.md`, `corporate-veil-piercing.md`, `zero-error-defensive-audit.md`
-  - Data schema: `skills/investigative-journalist/schemas/master-file.schema.json`
-- `skills/data-archivist/SKILL.md` — structure raw findings into queryable data
-- `skills/copy-review/SKILL.md` — readability/SEO/accessibility line edit
-- `skills/social-distributor/SKILL.md` — platform-optimized distribution copy
-- `skills/final-editor-review/SKILL.md` — adversarial libel and fact review
-- `skills/publish-article/SKILL.md`, `skills/publish-series/SKILL.md` — deployment
-- `skills/managing-editor/SKILL.md` — workflow coordination
-
-## Operating rules (all platforms)
-
-1. **Structured data first.** All investigation state lives in `master-file.json` conforming to the schema above. Markdown reports are rendered from it.
-2. **Grade at intake.** Every evidence item gets an Admiralty grade (source reliability A–F × information credibility 1–6) and a chain-of-custody block.
-2a. **Preserve everything, delete nothing.** Every collected item is saved to the write-once `evidence/` directory and hashed at intake; web sources also get a third-party archive capture immediately. Notes, negative results, dead-end leads, and drafts are retained under legal hold. Every evidentiary action is an entry in the append-only `collection_log[]`.
-3. **Publication rule.** A claim is publishable only when corroborated by two independent sources, or single-sourced to an A1/A2 official record.
-4. **Right of reply.** High defamation-risk claims require a documented comment request before drafting them.
-5. **Legal boundary.** Public records and lawful FOIA only. No pretexting, account access, impersonation, or non-consensual recording — ever.
-6. **Sequential desks.** Research → archive → copy → social → legal review → publish. No desk skips the one before it.
+## Operational Standards
+- **Silent & Autonomous Execution:** Minimize human prompts. Make reasonable, safe, and robust decisions independently based on local code conventions.
+- **Unit Testing & Verification:** Verify all your changes. Mock external systems where necessary to ensure tests can run and pass locally.
+- **Work Logging:** Always log your task starts and completions in `/Users/herren/dev/palimpsest/WORK-LOG.md` per project requirements.
