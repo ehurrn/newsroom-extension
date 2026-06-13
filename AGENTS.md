@@ -4,7 +4,7 @@ Cross-platform instructions for AI coding agents (OpenAI Codex, Cursor, and any 
 
 ## What this is
 
-A full-stack investigative journalism toolkit: 16 skills covering subject dossiers, OSINT, FOIA engineering, corporate veil piercing, libel defense, and the full editorial pipeline from lead to publication.
+A full-stack investigative journalism toolkit: 17 skills covering subject dossiers, OSINT, FOIA engineering, corporate veil piercing, evidence preservation, libel defense, and the full editorial pipeline from lead to publication.
 
 ## How to load skills
 

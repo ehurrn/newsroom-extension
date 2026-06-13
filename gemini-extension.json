@@ -1,7 +1,7 @@
 {
   "name": "newsroom",
   "version": "3.1.0",
-  "description": "Full-stack AI newsroom toolkit. Investigative journalism skills (entity mapping, dependency tracing, OSINT, libel defense, FOIA engineering, corporate veil piercing, timeline analysis) plus newsroom operations (copy review, data archival, social distribution, editorial review, deployment, workflow management).",
+  "description": "Full-stack AI newsroom toolkit. Investigative journalism skills (entity mapping, dependency tracing, OSINT, libel defense, FOIA engineering, corporate veil piercing, timeline analysis, evidence preservation, subject dossiers) plus newsroom operations (copy review, data archival, social distribution, editorial review, deployment, workflow management).",
   "keywords": [
     "investigative journalism",
     "OSINT",

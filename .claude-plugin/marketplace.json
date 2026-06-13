@@ -16,7 +16,7 @@
     {
       "name": "newsroom",
       "version": "3.1.0",
-      "description": "Investigative journalism and newsroom operations: subject dossiers, OSINT, FOIA engineering, corporate veil piercing, libel defense, copy review, archival, distribution, and publication workflows.",
+      "description": "Investigative journalism and newsroom operations: subject dossiers, OSINT, FOIA engineering, corporate veil piercing, evidence preservation, libel defense, copy review, archival, distribution, and publication workflows.",
       "source": "./",
       "category": "research",
       "keywords": [
