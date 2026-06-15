@@ -23,45 +23,33 @@ This is the **meta-level orchestration** that keeps newsroom operations smooth a
 
 ## Session Management & Workspace Cleanup
 
-### Workspace Structure
+### Canonical Workspace Structure
 
-Maintain a clean, organized workspace. Every investigation lives in a session:
+There is **one** workspace layout, shared with [`../investigative-journalist/evidence-preservation-protocol.md`](../investigative-journalist/evidence-preservation-protocol.md). Every investigation session is built around a `master-file.json` (conforming to `../investigative-journalist/schemas/master-file.schema.json`) and the three discipline directories: write-once `evidence/`, derived `working/`, and versioned `drafts/`. Do not invent a parallel folder scheme.
 
 ```
 newsroom-workspace/
 ├── sessions/
-│   ├── 2025-04-01-procurement-investigation/
-│   │   ├── articles/
-│   │   │   ├── part-1-draft.md
-│   │   │   ├── part-2-draft.md
-│   │   │   ├── part-3-draft.md
-│   │   ├── data/
-│   │   │   ├── contracts-2020-2024.csv
-│   │   │   ├── vendor-analysis.sql
-│   │   │   ├── schema.sql
-│   │   ├── sources/
-│   │   │   ├── city-council-minutes.pdf
-│   │   │   ├── procurement-policy.txt
-│   │   │   ├── FOIA-response-log.md
-│   │   ├── assets/
-│   │   │   ├── images/
-│   │   │   ├── charts/
-│   │   ├── TODO.md
-│   │   ├── NOTES.md
-│   │   └── README.md
-│   ├── 2025-03-15-water-contamination/
-│   │   ├── articles/
-│   │   ├── data/
-│   │   ├── sources/
+│   ├── 2026-06-01-procurement-investigation/
+│   │   ├── master-file.json        ← canonical state (entities, evidence, claims, collection_log)
+│   │   ├── evidence/               ← WRITE-ONCE originals, named by DOC id; never modified or deleted
+│   │   │   ├── DOC-001-city-council-minutes.pdf
+│   │   │   └── DOC-002-procurement-policy.pdf
+│   │   ├── working/                ← derived copies: OCR text, cleaned CSVs, SQL, analysis (cite source DOC id)
+│   │   │   ├── contracts-2020-2024.cleaned.csv
+│   │   │   └── vendor-analysis.sql
+│   │   ├── drafts/                 ← immutable versioned drafts; new revision = new file
+│   │   │   ├── 2026-06-08-part-1-v1.md
+│   │   │   └── 2026-06-10-part-1-v2.md
+│   │   ├── assets/                 ← images, charts (with alt text + source attribution)
 │   │   ├── TODO.md
 │   │   └── README.md
-│   └── [archived investigations...]
+│   └── [archived investigations — retained intact under legal hold...]
 ├── templates/
-│   ├── article-template.md
-│   ├── todo-template.md
-│   └── source-manifest-template.yaml
 └── ACTIVE_INVESTIGATIONS.md
 ```
+
+The legacy `sources/` and `data/` folders are superseded: originals live in `evidence/`, everything derived lives in `working/`. The append-only `collection_log[]` inside `master-file.json` replaces ad-hoc `FOIA-response-log.md` / `NOTES.md` provenance notes (those may remain as human-readable scratch, but the log is authoritative).
 
 ### Session Cleanup Checklist
 
@@ -241,7 +229,7 @@ When an investigation hits a **hard blocker** (CAPTCHA, login requirement, physi
 **What needs to happen:**
 1. Log into city's document portal (requires city employee credentials)
 2. Download audit records for procurement decisions (2020–2024)
-3. Save to: newsroom-workspace/2025-04-01-procurement-investigation/sources/audit-records/
+3. Save to: newsroom-workspace/2026-04-01-procurement-investigation/evidence/
 
 **Why I can't do it:**
 - Requires city employee login
@@ -266,7 +254,7 @@ When an investigation hits a **hard blocker** (CAPTCHA, login requirement, physi
 1. Visit: https://waterquality.state.gov/reports
 2. Search for: "Contaminant levels by county 2024"
 3. Download CSV (or screenshot if not downloadable)
-4. Save to: newsroom-workspace/2025-03-15-water-contamination/sources/
+4. Save to: newsroom-workspace/2026-03-15-water-contamination/evidence/
 
 **Why I can't do it:**
 - CAPTCHA prevents bot/automated access
@@ -289,7 +277,7 @@ When an investigation hits a **hard blocker** (CAPTCHA, login requirement, physi
 1. Contact city clerk: John Smith (john.smith@city.gov, 555-1234)
 2. Request unsealing of executive session minutes from 2022–2024
 3. If approved, pick up documents at city hall OR request email delivery
-4. Scan and save to: newsroom-workspace/2025-04-01-procurement-investigation/sources/
+4. Scan and save to: newsroom-workspace/2026-04-01-procurement-investigation/evidence/
 
 **Why I can't do it:**
 - Sealed records require legal authority/request
@@ -395,33 +383,42 @@ ACTIVE INVESTIGATIONS (priority order)
 
 ---
 
-## Archive Protection
+## Archive Protection & Legal Hold
 
 **NEVER delete intermediate work.** Your archive is your legal defense.
+
+### You Are the Legal-Hold Authority
+
+`investigation.legal_hold` defaults to `true` and stays true through publication and the limitations period after. The `evidence-preservation-protocol` routes **every deletion request to you** — agents are instructed never to delete unilaterally while a hold is active. When such a request reaches you:
+
+1. **Do not approve deletion to "clean up," because a story was killed, or because the material turned out to be wrong.** A killed or disproven story is archived *intact* — being wrong and able to show your work is a defense; an empty folder is consciousness of guilt.
+2. **Legitimate reasons to lift a hold are narrow** — e.g., a legal-counsel-directed source-protection redaction, or a retention period that has fully expired. These are counsel decisions, not editorial ones. Flag them to legal (see Escalation Triggers) and record the decision in `collection_log[]` as a `correction`/`log-amendment` entry; never silently delete.
+3. **Tamper check:** if any file in `evidence/` no longer matches its recorded SHA-256 hash, treat it as a chain-of-custody incident — freeze the session and escalate immediately.
+
+### Verify Preservation at Every Desk Handoff
+
+Run the `evidence-preservation-protocol` handoff checklist before accepting work from one desk into the next: every DOC item has a local copy + hash (+ archive URL if web-sourced), every claim cited in the current draft has a `cited-in-draft` log entry, and nothing has been deleted.
 
 ### What to Archive (Never Delete)
 
 ```
-Investigation Folder:
-├── articles/
-│   ├── part-1-draft-v1.md        ← Keep all versions
-│   ├── part-1-draft-v2.md        ← Track editing process
-│   ├── part-1-copy-reviewed.md   ← Show quality checks
-│   └── part-1-final.md           ← Published version
-├── data/
-│   ├── raw-data.csv              ← Original FOIA dump
-│   ├── cleaned-data.csv          ← Processing steps
-│   ├── queries.sql               ← All analysis queries
-│   └── failed-queries.sql        ← Show rigor (what didn't work)
-├── sources/
-│   ├── FOIA-response-2025-03-25.pdf  ← Original source
-│   ├── city-council-minutes.pdf      ← Archived webpage
-│   ├── interviews/
-│   │   ├── alice-interview-transcript.txt  ← Interview recording/transcript
-│   │   ├── bob-interview-audio.mp3         ← Preserved as-is
-│   └── email-thread-with-city.mbox    ← Complete correspondence
-└── README.md
-    └── Summary of investigation; what was found; chain of custody
+Investigation Folder (canonical layout):
+├── master-file.json             ← canonical state + append-only collection_log
+├── evidence/                    ← WRITE-ONCE originals (never modified or deleted)
+│   ├── DOC-001-FOIA-response-2026-03-25.pdf  ← Original source, hashed at intake
+│   ├── DOC-002-city-council-minutes.pdf      ← Archived webpage + archive.today URL in custody
+│   ├── DOC-010-alice-interview-transcript.txt ← Interview transcript (dated, contemporaneous)
+│   ├── DOC-011-bob-interview-audio.mp3        ← Preserved as-is
+│   └── DOC-020-email-thread-with-city.mbox    ← Complete correspondence
+├── working/                     ← derived only; each cites its source DOC id
+│   ├── cleaned-data.csv         ← Processing steps (raw lives in evidence/)
+│   ├── queries.sql              ← All analysis queries
+│   └── failed-queries.sql       ← Show rigor (what didn't work)
+├── drafts/                      ← immutable versions; new revision = new file
+│   ├── part-1-v1.md
+│   ├── part-1-copy-reviewed.md
+│   └── part-1-final.md
+└── README.md                    ← summary; what was found; points to collection_log for chain of custody
 ```
 
 ### Why Archive Matters
@@ -560,7 +557,7 @@ LOW = Consider; may not pursue
 **Morning ritual (10 min):**
 
 ```markdown
-# Daily Status Check (April 2, 2025)
+# Daily Status Check (April 2, 2026)
 
 ## Investigations Status
 - [ ] Procurement (Part 1): PUBLISHED ✓ | Part 2: Copy review in progress
@@ -621,6 +618,9 @@ Escalate to publisher/legal if:
 - [ ] **Legal threat received** (cease-and-desist, lawsuit threat)
 - [ ] **Subject demands to see article before publication**
 - [ ] **Fact-check reveals major error post-publication**
+- [ ] **Any request to delete, redact, or alter material under legal hold** (route to counsel; never action unilaterally)
+- [ ] **Evidence file fails its hash check** (possible tampering or corruption)
+- [ ] **Subject or audience sits under a truth-burden libel regime** (UK/Commonwealth) — confirm claims are affirmatively provable, not just defensible
 
 ---
 
@@ -631,12 +631,12 @@ After each investigation, measure:
 ```yaml
 investigation:
   name: "Procurement Breakdown"
-  published: "2025-04-01 to 2025-04-03"
+  published: "2026-04-01 to 2026-04-03"
 
 metrics:
   timeline:
-    start_date: "2025-02-01"
-    publication_date: "2025-04-01"
+    start_date: "2026-02-01"
+    publication_date: "2026-04-01"
     duration_weeks: 8
     bottleneck: "FOIA response (3 week delay)"
 

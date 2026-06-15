@@ -1,11 +1,11 @@
 # Newsroom
 
-![Version](https://img.shields.io/badge/version-3.1.0-blue.svg)
+![Version](https://img.shields.io/badge/version-3.2.0-blue.svg)
 ![License](https://img.shields.io/badge/license-Unlicense-brightgreen.svg)
 ![Gemini](https://img.shields.io/badge/Gemini_CLI-supported-4285F4.svg)
 ![Cowork](https://img.shields.io/badge/Cowork-supported-D97757.svg)
 
-An AI-powered investigative journalism toolkit. 17 skills covering subject dossiers, OSINT, FOIA engineering, corporate veil piercing, evidence preservation, libel defense, and full editorial workflow — from first lead to published story.
+An AI-powered investigative journalism toolkit. 18 skills covering subject dossiers, OSINT, FOIA engineering, corporate veil piercing, evidence preservation, libel defense, and full editorial workflow — from first lead to published story.
 
 Works with **Claude** (Cowork, Claude Code), **Gemini CLI**, and any **AGENTS.md-aware agent** (OpenAI Codex, Cursor — see [AGENTS.md](AGENTS.md)).
 
@@ -50,6 +50,7 @@ Domain knowledge used automatically when relevant. On Gemini CLI, ask the agent 
 | `investigative-journalist` | Scope your investigation, define claims, map what you need to prove |
 | `muckraker-master-file` | Build your central intelligence file — structured `master-file.json` of entities, evidence, claims, gaps |
 | `evidence-preservation-protocol` | Mandatory: write-once evidence store, append-only collection log, legal hold — delete nothing |
+| `evidence-grading` | One shared standard (Admiralty A–F × 1–6) and publication rule used by every sourcing desk |
 | `subject-dossier-construction` | PI-grade public records sweep and structured dossier per subject |
 | `structural-dependency-mapping` | Uncover hidden connections between people, organizations, and money |
 | `corporate-veil-piercing` | Trace corporate structures, shell companies, and beneficial ownership |
@@ -95,6 +96,13 @@ Core invariants enforced across every desk:
 - **Publication rule** — a claim is publishable only when corroborated by two independent sources, or single-sourced to an A1/A2 official record.
 - **Right of reply** — high defamation-risk claims require a documented comment request before drafting.
 - **Legal boundary** — public records and lawful FOIA only; no pretexting, account access, impersonation, or non-consensual recording.
+
+## What's New in 3.2.0
+
+- **One evidence-grading standard** (`evidence-grading.md`) — the Admiralty scale (source reliability A–F × information credibility 1–6) and a single publication rule, replacing the divergent HIGH/MEDIUM/LOW and PRIMARY/SECONDARY/TERTIARY scales that the audit and final-review desks used separately.
+- **Reconciled workspace layout** — `managing-editor` and `evidence-preservation-protocol` now share one canonical session structure (`master-file.json` + `evidence/` + `working/` + `drafts/`); `managing-editor` is now the documented legal-hold authority that deletion requests escalate to, with a hash-mismatch tamper check.
+- **Jurisdiction-aware libel defense** — `final-editor-review` now flags that U.S. actual-malice protections don't apply abroad (UK/Commonwealth reverse the truth burden; libel tourism) and defaults to the strictest plausible regime.
+- **Legal boundary on `corporate-veil-piercing`** — explicit no-pretexting/public-records-only guardrail (parity with `subject-dossier-construction`), plus schema hooks (`ENT-`/`REL-` edges) and A1/A2 grading before naming a beneficial owner.
 
 ## What's New in 3.1.0
 

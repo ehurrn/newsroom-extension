@@ -27,7 +27,16 @@ The final editor's job:
 
 **Assume the newsroom will be sued for defamation.** Every claim must be defensible under scrutiny.
 
-### Defamation Elements (What Makes a Claim Vulnerable)
+### Jurisdiction Matters — Know Which Regime Applies
+
+The elements below describe **U.S.** defamation doctrine, where the *plaintiff* generally must prove falsity and (for public figures) actual malice. **This is not universal, and the differences cut against the publisher:**
+
+- **UK / England & Wales, and much of the Commonwealth (Australia, etc.):** the burden is effectively **reversed** — once a statement is shown to be defamatory, the *defendant* must prove it is substantially true. There is no broad public-figure actual-malice shield. The serious-harm threshold and public-interest defenses exist but are narrower than U.S. protections.
+- **"Libel tourism":** a claimant may sue where the publication was *read*, not where it was written. A globally accessible article can be litigated under the least favorable applicable law.
+
+**Operating rule:** default to the **strictest plausible regime** for the subject and audience, not the most permissive. When the subject, the outlet, or a meaningful share of readers sits outside the U.S., assume truth must be *affirmatively provable* — which is exactly what the publication rule and the Master File's graded evidence give you. When unsure, escalate to counsel (see Escalation to Legal).
+
+### Defamation Elements (U.S. — What Makes a Claim Vulnerable)
 
 A statement is defamatory if:
 
@@ -38,7 +47,7 @@ A statement is defamatory if:
 5. **It caused reputational harm** (it identifies wrongdoing or character flaw)
 6. **The publisher knew or should have known it was false** (negligence standard; higher bar for public figures)
 
-**Implication for newsrooms:** Every factual claim must be verifiable, primary-sourced, and defensible.
+**Implication for newsrooms:** Every factual claim must be verifiable, primary-sourced, and defensible — and under a truth-burden regime, *provably* true on documents you hold.
 
 ---
 
@@ -190,11 +199,15 @@ Every significant claim must map to a primary source. Create a **verification ta
 
 ### Verification Confidence Levels
 
-| Confidence | Definition | Example | Acceptable for Publication? |
-|---|---|---|---|
-| **PRIMARY (High)** | First-hand document; official record; participant quote | Procurement database; court filing; participant email | YES |
-| **SECONDARY (Medium)** | Reported by credible outlet; official statement; inferred from documents | News article citing official; email interpreting policy | YES, with caution; verify independently if possible |
-| **TERTIARY (Low)** | Hearsay; rumor; inference without documents | "People say," "It's believed," "Allegedly" | NO; don't publish |
+Use the shared Admiralty scale from [`../investigative-journalist/evidence-grading.md`](../investigative-journalist/evidence-grading.md) — the same grade already recorded on each evidence item in the Master File. The legacy PRIMARY/SECONDARY/TERTIARY labels map as follows; convert, don't run a parallel scale:
+
+| Legacy label | Admiralty grade | Acceptable for Publication? |
+|---|---|---|
+| **PRIMARY** | A1–A2 (certified/official primary record) | YES — satisfies the rule on its own |
+| **SECONDARY** | B2–C2 (credible outlet, official statement, inference from documents) | Only if a second independent source raises it to corroborated |
+| **TERTIARY** | C3 and below, D–F (hearsay, rumor, "allegedly") | NO — don't publish |
+
+**The publication rule (binding):** a claim is greenlightable only when corroborated by two *independent* sources, or single-sourced to an A1/A2 official record. Two outlets repeating one wire story are one source. This is the same rule the research desk applied in `claims[].publishable`; your job is to confirm it held, not to relax it.
 
 ---
 
@@ -316,7 +329,7 @@ The final editor decides: **Can we defend this article if sued?**
 - [ ] **No motive attribution** (if we say someone acted "deliberately," we have quotes or documents proving intent)
 - [ ] **No quid pro quo claims** (if we allege exchange for favor, we have evidence of the exchange)
 - [ ] **No editorializing verbs** (no "failed," "neglected," "violated" without specific factual foundation)
-- [ ] **All named individuals have right of response** (article includes official statement or explains why we couldn't reach them)
+- [ ] **All named individuals have right of response** (article includes official statement or explains why we couldn't reach them). For every claim graded `defamation_risk: high` in the Master File, confirm `comment_requested: true` — a high-risk claim without a logged right-of-reply does not greenlight.
 - [ ] **Source credibility is defended** (if source is shaky, article says so: "The official has not verified these claims")
 - [ ] **Headline accurately reflects article** (not sensationalized; not more extreme than article text)
 - [ ] **We can prove every major claim** (traceability from publication back to primary source)
