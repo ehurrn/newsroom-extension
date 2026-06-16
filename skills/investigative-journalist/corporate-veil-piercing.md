@@ -37,6 +37,14 @@ Deploy Corporate Veil Piercing when:
 - You're seeking attorney-client privileged information (will be protected regardless)
 - You lack any starting point (need at least entity name and state of incorporation)
 
+## Legal & Ethical Boundary (non-negotiable)
+
+This skill is powerful precisely because it attaches real human names to entities built to hide them — which makes the collection method, and the grade of what you publish, the whole ballgame.
+
+- **In scope:** public registries (SOS, UCC, county recorder), paid aggregators *of* public records, court files, historical WHOIS, and what the subject voluntarily published.
+- **Out of scope — always:** pretexting (posing as someone else to pull records), accessing any account, impersonating a creditor or agent to obtain a guarantor's file, non-consensual recording, or any private financial/phone record obtained by deception. These are crimes in most jurisdictions and destroy both the story's admissibility and the outlet's defense. If a record is private, the route is FOIA, litigation discovery, or a willing lawful source — never a ruse.
+- **Beneficial ownership is an inference until documented.** "Manages 6 entities" is a fact; "controls a fraud network" is a conclusion. Publish the documented facts and let them speak (see `zero-error-defensive-audit`). Name a person as a beneficial owner only on **A1/A2 evidence** per [`evidence-grading.md`](evidence-grading.md), and treat it as a `defamation_risk: high` claim requiring right-of-reply.
+
 ---
 
 ## Core Pattern: Opacity Layers
@@ -569,5 +577,7 @@ Co-Conspirator: Robert Chen
 - [ ] Red flags documented (mail-drop services, privacy jurisdiction preference)
 - [ ] Evidence chain documented with specific citations and dates accessed
 - [ ] Cross-validation performed (same name appears across multiple independent sources)
+- [ ] Every entity and person recorded in the Master File as `ENT-` nodes; every ownership/guarantor/control link as a `REL-` edge carrying its `evidence_ids` (an edge with no evidence is an inference, flagged and unpublishable)
+- [ ] Each piece of evidence graded on the shared Admiralty scale ([`evidence-grading.md`](evidence-grading.md)); beneficial-ownership naming rests on A1/A2 sources
 - [ ] Publication-ready narrative written describing beneficial ownership
 - [ ] Fact-checked against news archives and LinkedIn profiles

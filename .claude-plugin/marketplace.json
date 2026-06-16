@@ -2,7 +2,7 @@
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "newsroom-extension",
   "displayName": "Newsroom",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "Full-stack AI toolkit for investigative journalism and editorial operations.",
   "owner": {
     "name": "ehurrn",
@@ -10,12 +10,12 @@
   },
   "metadata": {
     "description": "Full-stack AI toolkit for investigative journalism and editorial operations.",
-    "version": "3.1.0"
+    "version": "3.2.0"
   },
   "plugins": [
     {
       "name": "newsroom",
-      "version": "3.1.0",
+      "version": "3.2.0",
       "description": "Investigative journalism and newsroom operations: subject dossiers, OSINT, FOIA engineering, corporate veil piercing, evidence preservation, libel defense, copy review, archival, distribution, and publication workflows.",
       "source": "./",
       "category": "research",

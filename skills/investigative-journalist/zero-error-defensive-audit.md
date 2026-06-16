@@ -39,16 +39,18 @@ These phrases introduce libel exposure:
 
 #### 2. Green Flags (Keep and Strengthen)
 
-These phrases anchor claims to evidence:
+These phrases anchor claims to evidence. The "Source grade" column uses the shared Admiralty scale from [`evidence-grading.md`](evidence-grading.md) — the same grade recorded on the evidence item in the Master File. Do not invent a separate strength vocabulary here.
 
-| Green Flag Phrase | Why It Works | Strength |
-|-------------------|-------------|----------|
-| "[Document name] shows..." | Pins claim to specific file | ✓✓✓ Strongest |
-| "According to [official record]..." | Attributes to source; you're reporting, not asserting | ✓✓ Strong |
-| "The [entity] disclosed [fact]..." | Cites official disclosure | ✓✓ Strong |
-| "[Date], [actor] [action]; [Document] confirms..." | Timeline + document pairing | ✓✓ Strong |
-| "Three separate documents show the same pattern..." | Convergence of evidence | ✓✓ Strong |
-| "The timeline suggests [inference], though [caveat] remains unclear." | Honest inference + caveat | ✓ Moderate (for analysis sections) |
+| Green Flag Phrase | Why It Works | Source grade |
+|-------------------|-------------|--------------|
+| "[Document name] shows..." | Pins claim to a specific certified file | A1–A2 |
+| "According to [official record]..." | Attributes to source; you're reporting, not asserting | A2–B1 |
+| "The [entity] disclosed [fact]..." | Cites official disclosure | A2–B1 |
+| "[Date], [actor] [action]; [Document] confirms..." | Timeline + document pairing | A1–B2 |
+| "Three separate documents show the same pattern..." | Convergence of independent evidence → corroborated | A–B, credibility 1 |
+| "The timeline suggests [inference], though [caveat] remains unclear." | Honest inference + caveat | analysis only — not a factual claim |
+
+Apply the **publication rule** from `evidence-grading.md` during the audit: any factual sentence resting on a single source below A2, or on two retellings of one origin, is not yet publishable — hedge it and attribute it, or cut it.
 
 #### 3. Neutral/Conditional (Use Sparingly)
 
@@ -199,4 +201,4 @@ Train yourself to write procedurally. Here's the linguistic shift:
 
 ---
 
-**Required Background:** You MUST complete `muckraker-master-file` and `structural-dependency-mapping` before using this skill. Without those foundations, you'll have nothing to cite and nothing to audit.
+**Required Background:** You MUST complete `muckraker-master-file` and `structural-dependency-mapping` before using this skill. Without those foundations, you'll have nothing to cite and nothing to audit. Grade every cited source on the shared scale in [`evidence-grading.md`](evidence-grading.md) and enforce its publication rule sentence by sentence.

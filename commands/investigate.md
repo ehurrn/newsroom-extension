@@ -17,6 +17,7 @@ Load the `investigative-journalist` skill and follow its full framework — mast
 |-----------|-------------|
 | `muckraker-master-file` | First — initialize `master-file.json` (see `schemas/master-file.schema.json`) with entities, evidence, claims |
 | `evidence-preservation-protocol` | Always loaded — write-once `evidence/` store, append-only collection log, legal hold |
+| `evidence-grading` | Always loaded — shared Admiralty grading scale + publication rule for every claim |
 | `subject-dossier-construction` | Run the full public-records sweep on each named subject; grade all evidence |
 | `structural-dependency-mapping` | Trace indirect flows and tacit relationships |
 | `osint-source-inversion` | Harvest public records, filings, registrations |

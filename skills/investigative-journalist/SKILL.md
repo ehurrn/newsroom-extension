@@ -77,7 +77,7 @@ Private-investigator-grade subject workups:
 
 All investigation state lives in a single `master-file.json` conforming to [`schemas/master-file.schema.json`](schemas/master-file.schema.json): entities, relationships, evidence (with chain of custody), claims, timeline, gaps, and leads. Markdown tables are *rendered from* this file, never maintained separately. Key invariants:
 
-- **Every evidence item is graded** on the Admiralty scale (`reliability` A–F × `credibility` 1–6) at intake.
+- **Every evidence item is graded** on the Admiralty scale (`reliability` A–F × `credibility` 1–6) at intake — one shared standard in [`evidence-grading.md`](evidence-grading.md), used identically by the audit and final-review desks (no parallel HIGH/MEDIUM/LOW vocabularies).
 - **Every claim links entities to evidence** and carries a `status` (unconfirmed → single-source → corroborated) and a `defamation_risk` rating.
 - **Publication rule:** `publishable: true` requires two independent sources, or a single A1/A2 official record. Two outlets citing the same wire story are one source.
 - **Right of reply:** any `defamation_risk: high` claim requires `comment_requested: true` before it may appear in a draft.

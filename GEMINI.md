@@ -31,6 +31,7 @@ No desk executes in parallel; this ensures accountability, traceability, and err
 **Sub-skills** (each a separate file in `skills/investigative-journalist/`):
 - `muckraker-master-file.md` — Entity mapping and Master File construction (schema: `schemas/master-file.schema.json`)
 - `evidence-preservation-protocol.md` — MANDATORY: write-once evidence store, append-only collection log, legal hold; its checklist runs at every desk handoff
+- `evidence-grading.md` — the shared Admiralty grading scale and publication rule used by every sourcing desk
 - `subject-dossier-construction.md` — PI-grade public records sweeps and subject dossiers
 - `structural-dependency-mapping.md` — Dependency tracing (funds, board ties, contracts)
 - `osint-source-inversion.md` — Open-source intelligence curation
