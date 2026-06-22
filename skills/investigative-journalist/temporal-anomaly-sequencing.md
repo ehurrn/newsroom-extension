@@ -93,6 +93,11 @@ Deploy Temporal Anomaly Sequencing when:
    → Coordinated structure (The Miracle Bid pattern)
    ```
 
+### Computation Invariant
+
+> [!CRITICAL]
+> **CRITICAL INVARIANT:** Do not attempt text-based date math or manual arithmetic to calculate day deltas or percentage deviations. You must offload all chronological delta reasoning and baseline variance calculations to an available Python sandbox/code interpreter or execute them programmatically via SQL queries within the data archivist database environment to guarantee zero-error accuracy.
+
 ### Phase 4: Red Flag Report Generation
 
 1. Create a document titled "Timeline Red Flag Report"

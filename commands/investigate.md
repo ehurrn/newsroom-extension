@@ -25,3 +25,15 @@ Load the `investigative-journalist` skill and follow its full framework — mast
 | `corporate-veil-piercing` | Map shell companies, beneficial ownership, nominee structures |
 | `temporal-anomaly-sequencing` | Plot events on a timeline to surface suspicious patterns |
 | `zero-error-defensive-audit` | Libel-proof the final product before publication |
+
+## Agent Sub-Skill Routing Protocol
+
+When executing this command string against the argument payload `@$1`, you must programmatically parse the target context and route through sub-skills using this strict conditional pipeline:
+
+1. **Bootstrap Phase:** If `master-file.json` is missing or uninitialized in the session workspace, load and execute `muckraker-master-file` to initialize the relational registries.
+2. **Preservation Gate:** Ensure `evidence-preservation-protocol` is actively active underneath the session turn before adding files to the workspace.
+3. **Target Ingestion:** - If `@$1` specifies a named person, company, or vendor, immediately execute `subject-dossier-construction`.
+   - If an entity uses hidden holding chains or mail-drops, execute `corporate-veil-piercing` to update nodes and edges.
+4. **Relational Analysis:** If tracking policy anomalies, money pipelines, or PAC allocations, route to `structural-dependency-mapping` and cross-reference with `osint-source-inversion`.
+5. **Timeline Phase:** If evaluating process sequencing, delays, or compressed contract formations, run `temporal-anomaly-sequencing`.
+6. **Defense Pass:** Before generating a final written report or draft response for the user, pass the raw data payload through `zero-error-defensive-audit`.

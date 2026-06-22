@@ -74,6 +74,11 @@ The legacy `sources/` and `data/` folders are superseded: originals live in `evi
 
 ## TODO Management (Red-Green-Refactor Cycle)
 
+### Automated State Synchronization Rule
+
+> [!IMPORTANT]
+> Whenever you modify the status tracking lines in this documentation tracker (e.g., updating headings to state status is `RED`, `GREEN`, or `REFACTOR`), you must programmatically sync the update to the machine-readable data layer. Update the corresponding `investigation.status` enum value (`open`, `drafting`, `legal-review`, `published`, `archived`) inside the central workspace `master-file.json` schema on the same execution turn to ensure zero drift between reporting states and script engines.
+
 Borrow the TDD (test-driven development) mindset: **Red → Green → Refactor.**
 
 ### Red Phase: Write the Investigation

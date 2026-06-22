@@ -40,65 +40,7 @@ This is NOT data analysis (that's downstream). This IS:
 
 **Phase 1: Source Documentation (required before ingestion)**
 
-For every data source, create a `source-manifest.yaml`:
-
-```yaml
-source:
-  name: "Property Tax Assessment 2024"
-  url: "https://assessor.county.gov/export/property-assessment-2024.csv"
-  date_accessed: "2025-03-15"
-  date_published: "2025-02-01"
-
-format:
-  type: "CSV"
-  encoding: "UTF-8"
-  delimiter: ","
-  headers_row: 1
-
-extraction:
-  method: "direct_download"
-  by: "alice@newsroom.org"
-  date: "2025-03-15"
-
-fields:
-  - name: "parcel_id"
-    description: "Unique parcel identifier (APN)"
-    type: "string"
-    sample_values: ["123-456-789", "987-654-321"]
-  - name: "owner_name"
-    description: "Property owner name (may be LLC)"
-    type: "string"
-  - name: "assessed_value"
-    description: "2024 assessed value in USD"
-    type: "decimal"
-  - name: "last_sale_date"
-    description: "Date of last recorded sale (YYYY-MM-DD)"
-    type: "date"
-    null_handling: "Unknown sales marked as 1900-01-01"
-
-row_count: 45829
-sample_rows:
-  - parcel_id: "123-456-789"
-    owner_name: "John Smith"
-    assessed_value: "250000"
-    last_sale_date: "2020-06-15"
-
-limitations:
-  - "Data may be 1–3 months stale (assessed annually)"
-  - "Some LLCs have nominees; true owner unknown"
-  - "Exemptions (non-profit, government) may not be listed"
-
-chain_of_custody:
-  - event: "Downloaded from county website"
-    date: "2025-03-15"
-    by: "alice@newsroom.org"
-    tool: "wget"
-    hash_md5: "abc123def456..."
-  - event: "Uploaded to newsroom database"
-    date: "2025-03-15"
-    by: "archive@newsroom.org"
-    table: "property_tax.assessment_2024"
-```
+For every data source collected, you must immediately register its provenance parameters, download metadata, custody events, and SHA-256 hashes directly into the `evidence` array and append-only `collection_log[]` inside `master-file.json`. Do not write standalone or detached YAML files outside the central schema ecosystem.
 
 ---
 
@@ -147,7 +89,7 @@ CREATE TABLE fact_events (
   description       TEXT,
   source_url        VARCHAR(2048),
   source_page       INT,
-  confidence_level  VARCHAR(20),  -- "primary_source", "secondary", "inferred"
+  confidence_level  VARCHAR(20),  -- Aligns with Admiralty alphanumeric keys (e.g., 'A1', 'B2') from evidence-grading.md
   FOREIGN KEY (person_id) REFERENCES dim_people(person_id),
   FOREIGN KEY (entity_id) REFERENCES dim_entities(entity_id),
   FOREIGN KEY (document_id) REFERENCES dim_documents(document_id),
@@ -364,7 +306,7 @@ Every row in `fact_events` must be traceable to its source. This protects the ne
 | `document_id` | Foreign key to source document | 847 (links to court filing PDF) |
 | `source_url` | URL where data came from | https://courts.state.gov/filings/case-2024-001234 |
 | `source_page` | Page number (if PDF or scanned) | 5 |
-| `confidence_level` | How confident in the extraction | "primary_source", "secondary", "inferred" |
+| `confidence_level` | Aligns with Admiralty scale keys | "A1", "B2", "C3" |
 
 **Chain of Custody Log (required for sensitive claims):**
 
@@ -581,7 +523,7 @@ Before publishing claims based on archived data:
 - [ ] **Chain of custody log** created (if high-stakes claim)
 - [ ] **Data validation** passed: row count matches source, encoding correct, no silent truncation
 - [ ] **Foreign key constraints** enforced; no orphaned rows
-- [ ] **Confidence levels** assigned (primary_source, secondary, inferred); only primary_source used for definitive claims
+- [ ] **Confidence levels** assigned using Admiralty scale alphanumeric keys (e.g., A1, B2); only single A1/A2 or corroborated sources can back definitive claims
 - [ ] **Queries saved** and documented (not ad-hoc)
 - [ ] **Query results repeatable** (others can run same query, get same results)
 - [ ] **Hash verification** done (MD5 of source files stored and re-verified)
